@@ -1,0 +1,9 @@
+[submodule "imported/radcpp"]
+	path = imported/radcpp
+	url = https://github.com/majunlichn/radcpp.git
+[submodule "imported/SDL"]
+	path = imported/SDL
+	url = https://github.com/libsdl-org/SDL.git
+[submodule "imported/SDL_mixer"]
+	path = imported/SDL_mixer
+	url = https://github.com/libsdl-org/SDL_mixer.git
