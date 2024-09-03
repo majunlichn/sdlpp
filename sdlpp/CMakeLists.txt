@@ -1,0 +1,44 @@
+set(SDLPP_SOURCE_FILES
+    Core/Application.h
+    Core/Application.cpp
+    Core/EventHandler.h
+    Core/EventHandler.cpp
+    Core/Logging.h
+    Core/Logging.cpp
+    Core/ErrorHandling.h
+    Core/ErrorHandling.cpp
+    Core/Timer.h
+    Core/Timer.cpp
+    Gui/Window.h
+    Gui/Window.cpp
+    Gui/Renderer.h
+    Gui/Renderer.cpp
+    Gui/Surface.h
+    Gui/Surface.cpp
+    Gui/Texture.h
+    Gui/Texture.cpp
+    Media/Audio.h
+    Media/Audio.cpp
+    Media/AudioMixer.h
+    Media/AudioMixer.cpp
+    Media/Camera.h
+    Media/Camera.cpp
+)
+
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${SDLPP_SOURCE_FILES})
+
+add_library(sdlpp STATIC ${SDLPP_SOURCE_FILES})
+
+target_include_directories(sdlpp
+    PUBLIC ${SDLPP_ROOT}
+    PUBLIC ${SDLPP_ROOT}/imported/radcpp
+)
+
+find_package(SDL3 CONFIG REQUIRED PATHS ${SDLPP_ROOT}/imported/installed/SDL)
+find_package(SDL3_mixer CONFIG REQUIRED PATHS ${SDLPP_ROOT}/imported/installed/SDL_mixer)
+
+target_link_libraries(sdlpp
+    PUBLIC rad
+    PUBLIC SDL3::SDL3
+    PUBLIC SDL3_mixer::SDL3_mixer
+)
