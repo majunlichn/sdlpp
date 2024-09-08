@@ -9,6 +9,8 @@ set(SDLPP_SOURCE_FILES
     Core/ErrorHandling.cpp
     Core/Timer.h
     Core/Timer.cpp
+    Core/Power.h
+    Core/Power.cpp
     Gui/Window.h
     Gui/Window.cpp
     Gui/Renderer.h
