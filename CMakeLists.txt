@@ -7,6 +7,8 @@ message("CMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
 
 project(sdlpp)
 
+option(SDLPP_BUILD_SAMPLES "Build samples." ON)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
@@ -15,6 +17,11 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(SDLPP_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install)
 
-add_subdirectory(imported/radcpp)
+if (NOT TARGET rad)
+    add_subdirectory(imported/radcpp)
+endif()
 add_subdirectory(sdlpp)
-add_subdirectory(samples/WindowTest)
+
+if (SDLPP_BUILD_SAMPLES)
+    add_subdirectory(samples/WindowTest)
+endif()
