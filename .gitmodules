@@ -7,3 +7,6 @@
 [submodule "imported/SDL_mixer"]
 	path = imported/SDL_mixer
 	url = https://github.com/libsdl-org/SDL_mixer.git
+[submodule "imported/stb"]
+	path = imported/stb
+	url = https://github.com/nothings/stb.git
