@@ -90,8 +90,8 @@ int Music::GetTrackCount()
 
 bool Music::StartTrack(int track)
 {
-    int result = Mix_StartTrack(m_music, track);
-    return (result == 0);
+    SDL_bool result = Mix_StartTrack(m_music, track);
+    return (result == SDL_TRUE);
 }
 
 double Music::GetPosition()
@@ -174,8 +174,8 @@ AudioMixer::~AudioMixer()
 
 bool AudioMixer::Open(SDL_AudioDeviceID deviceID, const SDL_AudioSpec* spec)
 {
-    int result = Mix_OpenAudio(deviceID, spec);
-    if (result == 0)
+    SDL_bool result = Mix_OpenAudio(deviceID, spec);
+    if (result == SDL_TRUE)
     {
         m_opened = true;
         return true;
@@ -382,7 +382,7 @@ void AudioMixer::SetChannelFinishedCallback(Mix_ChannelFinishedCallback callback
 
 bool AudioMixer::RegisterEffect(int channel, Mix_EffectFunc_t f, Mix_EffectDone_t d, void* arg)
 {
-    int result = Mix_RegisterEffect(channel, f, d, arg);
+    SDL_bool result = Mix_RegisterEffect(channel, f, d, arg);
     if (result != 0)
     {
         return true;
@@ -396,7 +396,7 @@ bool AudioMixer::RegisterEffect(int channel, Mix_EffectFunc_t f, Mix_EffectDone_
 
 bool AudioMixer::UnregisterEffect(int channel, Mix_EffectFunc_t f)
 {
-    int result = Mix_UnregisterEffect(channel, f);
+    SDL_bool result = Mix_UnregisterEffect(channel, f);
     if (result != 0)
     {
         return true;
@@ -410,7 +410,7 @@ bool AudioMixer::UnregisterEffect(int channel, Mix_EffectFunc_t f)
 
 bool AudioMixer::UnregisterAllEffects(int channel)
 {
-    int result = Mix_UnregisterAllEffects(channel);
+    SDL_bool result = Mix_UnregisterAllEffects(channel);
     if (result != 0)
     {
         return true;
@@ -429,7 +429,7 @@ bool AudioMixer::SetPanning(int channel, Uint8 left, Uint8 right)
 
 bool AudioMixer::SetPosition(int channel, Sint16 angle, Uint8 distance)
 {
-    int result = Mix_SetPosition(channel, angle, distance);
+    SDL_bool result = Mix_SetPosition(channel, angle, distance);
     if (result != 0)
     {
         return true;
@@ -443,7 +443,7 @@ bool AudioMixer::SetPosition(int channel, Sint16 angle, Uint8 distance)
 
 bool AudioMixer::SetDistance(int channel, Uint8 distance)
 {
-    int result = Mix_SetDistance(channel, distance);
+    SDL_bool result = Mix_SetDistance(channel, distance);
     if (result != 0)
     {
         return true;
@@ -457,7 +457,7 @@ bool AudioMixer::SetDistance(int channel, Uint8 distance)
 
 bool AudioMixer::SetReverseStereo(int channel, bool flip)
 {
-    int result = Mix_SetReverseStereo(channel, flip);
+    SDL_bool result = Mix_SetReverseStereo(channel, flip);
     if (result != 0)
     {
         return true;
@@ -534,28 +534,24 @@ int AudioMixer::GetMasterVolume()
     return Mix_MasterVolume(-1);
 }
 
-bool AudioMixer::PlayChannel(int channel, AudioChunk* chunk, int loops)
+int AudioMixer::PlayChannel(int channel, AudioChunk* chunk, int loops)
 {
-    int result = Mix_PlayChannel(channel, chunk->GetChunk(), loops);
-    return (result != -1);
+    return Mix_PlayChannel(channel, chunk->GetChunk(), loops);
 }
 
-bool AudioMixer::PlayChannelTimed(int channel, AudioChunk* chunk, int loops, int ticks)
+int AudioMixer::PlayChannelTimed(int channel, AudioChunk* chunk, int loops, int ticks)
 {
-    int result = Mix_PlayChannelTimed(channel, chunk->GetChunk(), loops, ticks);
-    return (result != -1);
+    return Mix_PlayChannelTimed(channel, chunk->GetChunk(), loops, ticks);
 }
 
-bool AudioMixer::PlayChannelFadeIn(int channel, AudioChunk* chunk, int loops, int ms)
+int AudioMixer::PlayChannelFadeIn(int channel, AudioChunk* chunk, int loops, int ms)
 {
-    int result = Mix_FadeInChannel(channel, chunk->GetChunk(), loops, ms);
-    return (result != -1);
+    return Mix_FadeInChannel(channel, chunk->GetChunk(), loops, ms);
 }
 
-bool AudioMixer::PlayChannelFadeInTimed(int channel, AudioChunk* chunk, int loops, int ms, int ticks)
+int AudioMixer::PlayChannelFadeInTimed(int channel, AudioChunk* chunk, int loops, int ms, int ticks)
 {
-    int result = Mix_FadeInChannelTimed(channel, chunk->GetChunk(), loops, ms, ticks);
-    return (result != -1);
+    return Mix_FadeInChannelTimed(channel, chunk->GetChunk(), loops, ms, ticks);
 }
 
 Mix_Chunk* AudioMixer::GetChunk(int channel)
@@ -565,20 +561,20 @@ Mix_Chunk* AudioMixer::GetChunk(int channel)
 
 bool AudioMixer::PlayMusic(Music* music, int loops)
 {
-    int result = Mix_PlayMusic(music->GetMusic(), loops);
-    return (result == 0);
+    SDL_bool result = Mix_PlayMusic(music->GetMusic(), loops);
+    return (result == SDL_TRUE);
 }
 
 bool AudioMixer::PlayMusicFadeIn(Music* music, int loops, int ms)
 {
-    int result = Mix_FadeInMusic(music->GetMusic(), loops, ms);
-    return (result == 0);
+    SDL_bool result = Mix_FadeInMusic(music->GetMusic(), loops, ms);
+    return (result == SDL_TRUE);
 }
 
 bool AudioMixer::PlayMusicFadeInFromPosition(Music* music, int loops, int ms, double position)
 {
-    int result = Mix_FadeInMusicPos(music->GetMusic(), loops, ms, position);
-    return (result == 0);
+    SDL_bool result = Mix_FadeInMusicPos(music->GetMusic(), loops, ms, position);
+    return (result == SDL_TRUE);
 }
 
 void AudioMixer::HaltChannel(int channel)
@@ -596,41 +592,30 @@ void AudioMixer::HaltMusic()
     Mix_HaltMusic();
 }
 
-bool AudioMixer::ExpireChannel(int channel, int ticks)
+int AudioMixer::ExpireChannel(int channel, int ticks)
 {
-    int result = Mix_ExpireChannel(channel, ticks);
-    if (channel >= 0)
-    {
-        return (result == channel);
-    }
-    else
-    {
-        return (result > 0);
-    }
+    return Mix_ExpireChannel(channel, ticks);
 }
 
-bool AudioMixer::ExpireAllChannels(int ticks)
+int AudioMixer::ExpireAllChannels(int ticks)
 {
-    int result = Mix_ExpireChannel(-1, ticks);
-    return (result > 0);
+    return Mix_ExpireChannel(-1, ticks);
 }
 
-bool AudioMixer::FadeOutChannel(int which, int ms)
+int AudioMixer::FadeOutChannel(int which, int ms)
 {
-    int result = Mix_FadeOutChannel(which, ms);
-    return (result > 0);
+    return Mix_FadeOutChannel(which, ms);
 }
 
-bool AudioMixer::FadeOutGroup(int tag, int ms)
+int AudioMixer::FadeOutGroup(int tag, int ms)
 {
-    int result = Mix_FadeOutGroup(tag, ms);
-    return (result > 0);
+    return Mix_FadeOutGroup(tag, ms);
 }
 
 bool AudioMixer::FadeOutMusic(int ms)
 {
-    int result = Mix_FadeOutMusic(ms);
-    return (result != 0);
+    SDL_bool result = Mix_FadeOutMusic(ms);
+    return (result == SDL_TRUE);
 }
 
 Mix_Fading AudioMixer::GetMusicFading()
@@ -669,6 +654,11 @@ bool AudioMixer::IsChannelPaused(int channel)
     return (result == 1);
 }
 
+int AudioMixer::GetPausedChannelCount()
+{
+    return Mix_Paused(-1);
+}
+
 void AudioMixer::PauseMusic()
 {
     Mix_PauseMusic();
@@ -691,8 +681,8 @@ bool AudioMixer::IsMusicPaused()
 
 bool AudioMixer::ModMusicJumpToOrder(int order)
 {
-    int result = Mix_ModMusicJumpToOrder(order);
-    return (result == 0);
+    SDL_bool result = Mix_ModMusicJumpToOrder(order);
+    return (result == SDL_TRUE);
 }
 
 bool AudioMixer::IsChannelPlaying(int channel)
@@ -701,27 +691,27 @@ bool AudioMixer::IsChannelPlaying(int channel)
     return (result != 0);
 }
 
-int AudioMixer::GetChannelCountPlaying()
+int AudioMixer::GetPlayingChannelCount()
 {
     return Mix_Playing(-1);
 }
 
 bool AudioMixer::IsMusicPlaying()
 {
-    int result = Mix_PlayingMusic();
+    SDL_bool result = Mix_PlayingMusic();
     return (result != 0);
 }
 
 bool AudioMixer::SetMusicCommand(std::string_view command)
 {
-    int result = Mix_SetMusicCMD(command.data());
-    return (result == 0);
+    SDL_bool result = Mix_SetMusicCMD(command.data());
+    return (result == SDL_TRUE);
 }
 
 bool AudioMixer::SetSoundFonts(std::string_view paths)
 {
-    int result = Mix_SetSoundFonts(paths.data());
-    return (result == 0);
+    SDL_bool result = Mix_SetSoundFonts(paths.data());
+    return (result == SDL_TRUE);
 }
 
 const char* AudioMixer::GetSoundFonts()
@@ -731,13 +721,13 @@ const char* AudioMixer::GetSoundFonts()
 
 bool AudioMixer::IterateSoundFonts(Mix_EachSoundFontCallback function, void* data)
 {
-    int result = Mix_EachSoundFont(function, data);
+    SDL_bool result = Mix_EachSoundFont(function, data);
     return (result != 0);
 }
 
 bool AudioMixer::SetTimidityCfg(std::string_view path)
 {
-    int result = Mix_SetTimidityCfg(path.data());
+    SDL_bool result = Mix_SetTimidityCfg(path.data());
     return (result == 1);
 }
 

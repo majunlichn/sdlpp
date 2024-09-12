@@ -111,10 +111,10 @@ public:
     int SetMasterVolume(int volume);
     int GetMasterVolume();
 
-    bool PlayChannel(int channel, AudioChunk* chunk, int loops);
-    bool PlayChannelTimed(int channel, AudioChunk* chunk, int loops, int ticks);
-    bool PlayChannelFadeIn(int channel, AudioChunk* chunk, int loops, int ms);
-    bool PlayChannelFadeInTimed(int channel, AudioChunk* chunk, int loops, int ms, int ticks);
+    int PlayChannel(int channel, AudioChunk* chunk, int loops);
+    int PlayChannelTimed(int channel, AudioChunk* chunk, int loops, int ticks);
+    int PlayChannelFadeIn(int channel, AudioChunk* chunk, int loops, int ms);
+    int PlayChannelFadeInTimed(int channel, AudioChunk* chunk, int loops, int ms, int ticks);
     Mix_Chunk* GetChunk(int channel);
     bool PlayMusic(Music* music, int loops);
     bool PlayMusicFadeIn(Music* music, int loops, int ms);
@@ -122,10 +122,10 @@ public:
     void HaltChannel(int channel);
     void HaltGroup(int tag);
     void HaltMusic();
-    bool ExpireChannel(int channel, int ticks);
-    bool ExpireAllChannels(int ticks);
-    bool FadeOutChannel(int which, int ms);
-    bool FadeOutGroup(int tag, int ms);
+    int ExpireChannel(int channel, int ticks);
+    int ExpireAllChannels(int ticks);
+    int FadeOutChannel(int which, int ms);
+    int FadeOutGroup(int tag, int ms);
     bool FadeOutMusic(int ms);
     Mix_Fading GetMusicFading();
     Mix_Fading GetChannelFading(int which);
@@ -134,6 +134,7 @@ public:
     void Resume(int channel);
     void ResumeGroup(int tag);
     bool IsChannelPaused(int channel);
+    int GetPausedChannelCount();
     void PauseMusic();
     void ResumeMusic();
     void RewindMusic();
@@ -141,7 +142,7 @@ public:
     bool ModMusicJumpToOrder(int order);
 
     bool IsChannelPlaying(int channel);
-    int GetChannelCountPlaying();
+    int GetPlayingChannelCount();
     bool IsMusicPlaying();
 
     bool SetMusicCommand(std::string_view command);

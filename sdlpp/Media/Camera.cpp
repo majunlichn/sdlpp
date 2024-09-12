@@ -81,9 +81,18 @@ Camera::Permission Camera::GetPermission()
     return static_cast<Permission>(permission);
 }
 
-int Camera::GetFormat(SDL_CameraSpec* spec)
+bool Camera::GetFormat(SDL_CameraSpec* spec)
 {
-    return SDL_GetCameraFormat(m_handle, spec);
+    SDL_bool result = SDL_GetCameraFormat(m_handle, spec);
+    if (result == SDL_TRUE)
+    {
+        return true;
+    }
+    else
+    {
+        RAD_LOG(GetLogger(), err, "SDL_GetCameraFormat failed: {}", SDL_GetError());
+        return false;
+    }
 }
 
 SDL_Surface* Camera::AcquireFrame(Uint64* timestamp)

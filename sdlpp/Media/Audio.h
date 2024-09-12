@@ -35,8 +35,8 @@ public:
     const char* GetName() const { return m_name; }
 
     bool Open(const SDL_AudioSpec* spec);
-    void Pause();
-    void Resume();
+    bool Pause();
+    bool Resume();
     bool IsPaused();
     void Close();
 

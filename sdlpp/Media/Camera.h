@@ -37,7 +37,7 @@ public:
         Approved = 1,
     };
     Permission GetPermission();
-    int GetFormat(SDL_CameraSpec* spec);
+    bool GetFormat(SDL_CameraSpec* spec);
 
     // Do not call SDL_FreeSurface() on the returned surface!
     SDL_Surface* AcquireFrame(Uint64* timestamp);

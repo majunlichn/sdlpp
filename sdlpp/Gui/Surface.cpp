@@ -89,8 +89,8 @@ void Surface::Destroy()
 
 bool Surface::SaveBMP(SDL_IOStream* dst, SDL_bool closeio)
 {
-    int result = SDL_SaveBMP_IO(m_handle, dst, closeio);
-    if (result == 0)
+    SDL_bool result = SDL_SaveBMP_IO(m_handle, dst, closeio);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -103,8 +103,8 @@ bool Surface::SaveBMP(SDL_IOStream* dst, SDL_bool closeio)
 
 bool Surface::SaveBMP(const char* file)
 {
-    int result = SDL_SaveBMP(m_handle, file);
-    if (result == 0)
+    SDL_bool result = SDL_SaveBMP(m_handle, file);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -117,8 +117,8 @@ bool Surface::SaveBMP(const char* file)
 
 bool Surface::SetColorSpace(SDL_Colorspace colorspace)
 {
-    int result = SDL_SetSurfaceColorspace(m_handle, colorspace);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfaceColorspace(m_handle, colorspace);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -136,8 +136,8 @@ SDL_Colorspace Surface::GetColorSpace(SDL_Colorspace* colorspace)
 
 bool Surface::SetPalette(SDL_Palette* palette)
 {
-    int result = SDL_SetSurfacePalette(m_handle, palette);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfacePalette(m_handle, palette);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -150,8 +150,8 @@ bool Surface::SetPalette(SDL_Palette* palette)
 
 bool Surface::Lock()
 {
-    int result = SDL_LockSurface(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_LockSurface(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -169,8 +169,8 @@ void Surface::Unlock()
 
 bool Surface::SetRLE(int flag)
 {
-    int result = SDL_SetSurfaceRLE(m_handle, flag);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfaceRLE(m_handle, flag);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -188,8 +188,8 @@ bool Surface::HasRLE()
 
 bool Surface::SetColorKey(int flag, Uint32 key)
 {
-    int result = SDL_SetSurfaceColorKey(m_handle, flag, key);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfaceColorKey(m_handle, flag, key);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -207,8 +207,8 @@ bool Surface::HasColorKey()
 
 bool Surface::GetColorKey(Uint32* key)
 {
-    int result = SDL_GetSurfaceColorKey(m_handle, key);
-    if (result == 0)
+    SDL_bool result = SDL_GetSurfaceColorKey(m_handle, key);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -221,8 +221,8 @@ bool Surface::GetColorKey(Uint32* key)
 
 bool Surface::SetColorMod(Uint8 r, Uint8 g, Uint8 b)
 {
-    int result = SDL_SetSurfaceColorMod(m_handle, r, g, b);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfaceColorMod(m_handle, r, g, b);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -235,8 +235,8 @@ bool Surface::SetColorMod(Uint8 r, Uint8 g, Uint8 b)
 
 bool Surface::GetColorMod(Uint8* r, Uint8* g, Uint8* b)
 {
-    int result = SDL_GetSurfaceColorMod(m_handle, r, g, b);
-    if (result == 0)
+    SDL_bool result = SDL_GetSurfaceColorMod(m_handle, r, g, b);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -249,8 +249,8 @@ bool Surface::GetColorMod(Uint8* r, Uint8* g, Uint8* b)
 
 bool Surface::SetAlphaMode(Uint8 alpha)
 {
-    int result = SDL_SetSurfaceAlphaMod(m_handle, alpha);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfaceAlphaMod(m_handle, alpha);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -263,8 +263,8 @@ bool Surface::SetAlphaMode(Uint8 alpha)
 
 bool Surface::GetAlphaMode(Uint8* alpha)
 {
-    int result = SDL_GetSurfaceAlphaMod(m_handle, alpha);
-    if (result == 0)
+    SDL_bool result = SDL_GetSurfaceAlphaMod(m_handle, alpha);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -277,8 +277,8 @@ bool Surface::GetAlphaMode(Uint8* alpha)
 
 bool Surface::SetBlendMode(SDL_BlendMode blendMode)
 {
-    int result = SDL_SetSurfaceBlendMode(m_handle, blendMode);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfaceBlendMode(m_handle, blendMode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -291,8 +291,8 @@ bool Surface::SetBlendMode(SDL_BlendMode blendMode)
 
 bool Surface::GetBlendMode(SDL_BlendMode* blendMode)
 {
-    int result = SDL_GetSurfaceBlendMode(m_handle, blendMode);
-    if (result == 0)
+    SDL_bool result = SDL_GetSurfaceBlendMode(m_handle, blendMode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -305,8 +305,8 @@ bool Surface::GetBlendMode(SDL_BlendMode* blendMode)
 
 bool Surface::SetClipRect(const SDL_Rect* rect)
 {
-    int result = SDL_SetSurfaceClipRect(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_SetSurfaceClipRect(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -324,8 +324,8 @@ bool Surface::DisableClipping()
 
 bool Surface::GetClipRect(SDL_Rect* rect)
 {
-    int result = SDL_GetSurfaceClipRect(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_GetSurfaceClipRect(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -338,8 +338,8 @@ bool Surface::GetClipRect(SDL_Rect* rect)
 
 bool Surface::Flip(SDL_FlipMode flip)
 {
-    int result = SDL_FlipSurface(m_handle, flip);
-    if (result == 0)
+    SDL_bool result = SDL_FlipSurface(m_handle, flip);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -396,8 +396,8 @@ rad::Ref<Surface> Surface::Convert(
 
 bool Surface::PremultiplyAlpha(bool linear)
 {
-    int result = SDL_PremultiplySurfaceAlpha(m_handle, linear ? SDL_TRUE : SDL_FALSE);
-    if (result == 0)
+    SDL_bool result = SDL_PremultiplySurfaceAlpha(m_handle, linear ? SDL_TRUE : SDL_FALSE);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -410,8 +410,8 @@ bool Surface::PremultiplyAlpha(bool linear)
 
 bool Surface::Clear(float r, float g, float b, float a)
 {
-    int result = SDL_ClearSurface(m_handle, r, g, b, a);
-    if (result == 0)
+    SDL_bool result = SDL_ClearSurface(m_handle, r, g, b, a);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -424,8 +424,8 @@ bool Surface::Clear(float r, float g, float b, float a)
 
 bool Surface::FillRect(const SDL_Rect* rect, Uint32 color)
 {
-    int result = SDL_FillSurfaceRect(m_handle, rect, color);
-    if (result == 0)
+    SDL_bool result = SDL_FillSurfaceRect(m_handle, rect, color);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -438,8 +438,8 @@ bool Surface::FillRect(const SDL_Rect* rect, Uint32 color)
 
 bool Surface::FillRects(const SDL_Rect* rects, int count, Uint32 color)
 {
-    int result = SDL_FillSurfaceRects(m_handle, rects, count, color);
-    if (result == 0)
+    SDL_bool result = SDL_FillSurfaceRects(m_handle, rects, count, color);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -452,8 +452,8 @@ bool Surface::FillRects(const SDL_Rect* rects, int count, Uint32 color)
 
 bool Surface::Blit(Surface* src, const SDL_Rect* srcRect, Surface* dst, SDL_Rect* dstRect)
 {
-    int result = SDL_BlitSurface(src->GetHandle(), srcRect, dst->GetHandle(), dstRect);
-    if (result == 0)
+    SDL_bool result = SDL_BlitSurface(src->GetHandle(), srcRect, dst->GetHandle(), dstRect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -466,9 +466,9 @@ bool Surface::Blit(Surface* src, const SDL_Rect* srcRect, Surface* dst, SDL_Rect
 
 bool Surface::BlitUnchecked(Surface* src, const SDL_Rect* srcRect, Surface* dst, const SDL_Rect* dstRect)
 {
-    int result = SDL_BlitSurfaceUnchecked(
+    SDL_bool result = SDL_BlitSurfaceUnchecked(
         src->GetHandle(), srcRect, dst->GetHandle(), dstRect);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -482,8 +482,8 @@ bool Surface::BlitUnchecked(Surface* src, const SDL_Rect* srcRect, Surface* dst,
 bool Surface::BlitScaled(Surface* src, const SDL_Rect* srcRect,
     Surface* dst, SDL_Rect* dstRect, SDL_ScaleMode scaleMode)
 {
-    int result = SDL_BlitSurfaceScaled(src->GetHandle(), srcRect, dst->GetHandle(), dstRect, scaleMode);
-    if (result == 0)
+    SDL_bool result = SDL_BlitSurfaceScaled(src->GetHandle(), srcRect, dst->GetHandle(), dstRect, scaleMode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -497,9 +497,9 @@ bool Surface::BlitScaled(Surface* src, const SDL_Rect* srcRect,
 bool Surface::BlitUncheckedScaled(Surface* src, const SDL_Rect* srcRect,
     Surface* dst, SDL_Rect* dstRect, SDL_ScaleMode scaleMode)
 {
-    int result = SDL_BlitSurfaceUncheckedScaled(
+    SDL_bool result = SDL_BlitSurfaceUncheckedScaled(
         src->GetHandle(), srcRect, dst->GetHandle(), dstRect, scaleMode);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -512,8 +512,8 @@ bool Surface::BlitUncheckedScaled(Surface* src, const SDL_Rect* srcRect,
 
 bool Surface::BlitTiled(Surface* src, const SDL_Rect* srcRect, Surface* dst, SDL_Rect* dstRect)
 {
-    int result = SDL_BlitSurfaceTiled(src->GetHandle(), srcRect, dst->GetHandle(), dstRect);
-    if (result == 0)
+    SDL_bool result = SDL_BlitSurfaceTiled(src->GetHandle(), srcRect, dst->GetHandle(), dstRect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -528,9 +528,9 @@ bool Surface::BlitTiledWithScale(Surface* src, const SDL_Rect* srcRect,
     float scale, SDL_ScaleMode scaleMode,
     Surface* dst, const SDL_Rect* dstRect)
 {
-    int result = SDL_BlitSurfaceTiledWithScale(src->GetHandle(), srcRect, scale, scaleMode,
+    SDL_bool result = SDL_BlitSurfaceTiledWithScale(src->GetHandle(), srcRect, scale, scaleMode,
         dst->GetHandle(), dstRect);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -550,8 +550,8 @@ bool Surface::Blit9Grid(Surface* src, const SDL_Rect* srcRect,
 
 bool Surface::ReadPixel(int x, int y, Uint8* r, Uint8* g, Uint8* b, Uint8* a)
 {
-    int result = SDL_ReadSurfacePixel(m_handle, x, y, r, g, b, a);
-    if (result == 0)
+    SDL_bool result = SDL_ReadSurfacePixel(m_handle, x, y, r, g, b, a);
+    if (result == SDL_TRUE)
     {
         return true;
     }

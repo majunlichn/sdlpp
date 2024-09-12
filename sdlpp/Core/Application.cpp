@@ -96,17 +96,14 @@ void Application::UnregisterEventHandler(EventHandler* handler)
 
 bool Application::PushEvent(SDL_Event& event)
 {
-    int result = SDL_PushEvent(&event);
-    if (result == 1)
+    SDL_bool result = SDL_PushEvent(&event);
+    if (result == SDL_TRUE)
     {
         return true;
     }
     else
     {
-        if (result < 0)
-        {
-            RAD_LOG(GetLogger(), err, "SDL_PushEvent failed: {}", SDL_GetError());
-        }
+        RAD_LOG(GetLogger(), err, "SDL_PushEvent failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -189,8 +186,8 @@ bool Application::IsScreenSaverEnabled()
 
 bool Application::EnableScreenSaver()
 {
-    int result = SDL_EnableScreenSaver();
-    if (result == 0)
+    SDL_bool result = SDL_EnableScreenSaver();
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -203,8 +200,8 @@ bool Application::EnableScreenSaver()
 
 bool Application::DisableScreenSaver()
 {
-    int result = SDL_DisableScreenSaver();
-    if (result == 0)
+    SDL_bool result = SDL_DisableScreenSaver();
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -217,8 +214,8 @@ bool Application::DisableScreenSaver()
 
 bool Application::SetClipboardText(const char* text)
 {
-    int result = SDL_SetClipboardText(text);
-    if (result == 0)
+    SDL_bool result = SDL_SetClipboardText(text);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -251,8 +248,8 @@ bool Application::HasClipboardText()
 
 bool Application::SetPrimarySelectionText(const char* text)
 {
-    int result = SDL_SetPrimarySelectionText(text);
-    if (result == 0)
+    SDL_bool result = SDL_SetPrimarySelectionText(text);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -286,8 +283,8 @@ bool Application::HasPrimarySelectionText()
 bool Application::SetClipboardData(SDL_ClipboardDataCallback callback, SDL_ClipboardCleanupCallback cleanup,
     void* userData, const char** mimeTypes, size_t mimeTypeCount)
 {
-    int result = SDL_SetClipboardData(callback, cleanup, userData, mimeTypes, mimeTypeCount);
-    if (result == 0)
+    SDL_bool result = SDL_SetClipboardData(callback, cleanup, userData, mimeTypes, mimeTypeCount);
+    if (result == SDL_TRUE)
     {
         return true;
     }

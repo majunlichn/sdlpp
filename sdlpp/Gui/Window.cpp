@@ -70,8 +70,8 @@ float Window::GetDisplayScale()
 
 bool Window::SetFullscreenMode(const SDL_DisplayMode* mode)
 {
-    int result = SDL_SetWindowFullscreenMode(m_handle, mode);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowFullscreenMode(m_handle, mode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -124,8 +124,8 @@ SDL_WindowFlags Window::GetFlags()
 
 bool Window::SetTitle(std::string_view title)
 {
-    int result = SDL_SetWindowTitle(m_handle, title.data());
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowTitle(m_handle, title.data());
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -143,8 +143,8 @@ const char* Window::GetTitle()
 
 bool Window::SetIcon(SDL_Surface* icon)
 {
-    int result = SDL_SetWindowIcon(m_handle, icon);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowIcon(m_handle, icon);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -162,8 +162,8 @@ bool Window::SetIcon(Surface* icon)
 
 bool Window::SetPosition(int x, int y)
 {
-    int result = SDL_SetWindowPosition(m_handle, x, y);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowPosition(m_handle, x, y);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -176,8 +176,8 @@ bool Window::SetPosition(int x, int y)
 
 bool Window::GetPosition(int* x, int* y)
 {
-    int result = SDL_GetWindowPosition(m_handle, x, y);
-    if (result == 0)
+    SDL_bool result = SDL_GetWindowPosition(m_handle, x, y);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -190,8 +190,8 @@ bool Window::GetPosition(int* x, int* y)
 
 bool Window::SetSize(int w, int h)
 {
-    int result = SDL_SetWindowSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -204,8 +204,8 @@ bool Window::SetSize(int w, int h)
 
 bool Window::GetSize(int* w, int* h)
 {
-    int result = SDL_GetWindowSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_GetWindowSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -218,8 +218,8 @@ bool Window::GetSize(int* w, int* h)
 
 bool Window::SetAspectRatio(float minAspect, float maxAspect)
 {
-    int result = SDL_SetWindowAspectRatio(m_handle, minAspect, maxAspect);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowAspectRatio(m_handle, minAspect, maxAspect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -232,8 +232,8 @@ bool Window::SetAspectRatio(float minAspect, float maxAspect)
 
 bool Window::GetAspectRatio(float* minAspect, float* maxAspect)
 {
-    int result = SDL_GetWindowAspectRatio(m_handle, minAspect, maxAspect);
-    if (result == 0)
+    SDL_bool result = SDL_GetWindowAspectRatio(m_handle, minAspect, maxAspect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -246,8 +246,8 @@ bool Window::GetAspectRatio(float* minAspect, float* maxAspect)
 
 bool Window::GetSizeInPixels(int* w, int* h)
 {
-    int result = SDL_GetWindowSizeInPixels(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_GetWindowSizeInPixels(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -260,8 +260,8 @@ bool Window::GetSizeInPixels(int* w, int* h)
 
 bool Window::SetMinimumSize(int w, int h)
 {
-    int result = SDL_SetWindowMinimumSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowMinimumSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -274,8 +274,8 @@ bool Window::SetMinimumSize(int w, int h)
 
 bool Window::GetMinimumSize(int* w, int* h)
 {
-    int result = SDL_GetWindowMinimumSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_GetWindowMinimumSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -288,8 +288,8 @@ bool Window::GetMinimumSize(int* w, int* h)
 
 bool Window::SetMaximumSize(int w, int h)
 {
-    int result = SDL_SetWindowMaximumSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowMaximumSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -302,8 +302,8 @@ bool Window::SetMaximumSize(int w, int h)
 
 bool Window::GetMaximumSize(int* w, int* h)
 {
-    int result = SDL_GetWindowMaximumSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_GetWindowMaximumSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -316,9 +316,9 @@ bool Window::GetMaximumSize(int* w, int* h)
 
 bool Window::SetBordered(bool bordered)
 {
-    int result = SDL_SetWindowBordered(m_handle,
+    SDL_bool result = SDL_SetWindowBordered(m_handle,
         bordered ? SDL_TRUE : SDL_FALSE);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -331,9 +331,9 @@ bool Window::SetBordered(bool bordered)
 
 bool Window::SetResizable(bool resizable)
 {
-    int result = SDL_SetWindowResizable(m_handle,
+    SDL_bool result = SDL_SetWindowResizable(m_handle,
         resizable ? SDL_TRUE : SDL_FALSE);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -346,9 +346,9 @@ bool Window::SetResizable(bool resizable)
 
 bool Window::SetAlwaysOnTop(bool onTop)
 {
-    int result = SDL_SetWindowAlwaysOnTop(m_handle,
+    SDL_bool result = SDL_SetWindowAlwaysOnTop(m_handle,
         onTop ? SDL_TRUE : SDL_FALSE);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -361,8 +361,8 @@ bool Window::SetAlwaysOnTop(bool onTop)
 
 bool Window::Show()
 {
-    int result = SDL_ShowWindow(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_ShowWindow(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -375,8 +375,8 @@ bool Window::Show()
 
 bool Window::Hide()
 {
-    int result = SDL_HideWindow(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_HideWindow(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -389,8 +389,8 @@ bool Window::Hide()
 
 bool Window::Raise()
 {
-    int result = SDL_RaiseWindow(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_RaiseWindow(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -403,8 +403,8 @@ bool Window::Raise()
 
 bool Window::Maximize()
 {
-    int result = SDL_MaximizeWindow(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_MaximizeWindow(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -417,8 +417,8 @@ bool Window::Maximize()
 
 bool Window::Minimize()
 {
-    int result = SDL_MinimizeWindow(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_MinimizeWindow(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -431,8 +431,8 @@ bool Window::Minimize()
 
 bool Window::Restore()
 {
-    int result = SDL_RestoreWindow(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_RestoreWindow(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -445,8 +445,8 @@ bool Window::Restore()
 
 bool Window::SetFullscreen(bool fullscreen)
 {
-    int result = SDL_SetWindowFullscreen(m_handle, fullscreen);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowFullscreen(m_handle, fullscreen);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -459,21 +459,14 @@ bool Window::SetFullscreen(bool fullscreen)
 
 bool Window::Sync()
 {
-    int result = SDL_SyncWindow(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_SyncWindow(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
     else
     {
-        if (result > 0)
-        {
-            RAD_LOG(GetLogger(), err, "SDL_SyncWindow timed out: {}", result);
-        }
-        else if (result < 0)
-        {
-            RAD_LOG(GetLogger(), err, "SDL_SyncWindow failed: {}", SDL_GetError());
-        }
+        RAD_LOG(GetLogger(), err, "SDL_SyncWindow timed out!");
         return false;
     }
 }
@@ -495,8 +488,8 @@ SDL_Surface* Window::GetSurface()
 
 bool Window::SetSurfaceVSync(int vsync)
 {
-    int result = SDL_SetWindowSurfaceVSync(m_handle, vsync);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowSurfaceVSync(m_handle, vsync);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -509,8 +502,8 @@ bool Window::SetSurfaceVSync(int vsync)
 
 bool Window::GetSurfaceVSync(int* vsync)
 {
-    int result = SDL_GetWindowSurfaceVSync(m_handle, vsync);
-    if (result == 0)
+    SDL_bool result = SDL_GetWindowSurfaceVSync(m_handle, vsync);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -523,8 +516,8 @@ bool Window::GetSurfaceVSync(int* vsync)
 
 bool Window::UpdateSurface()
 {
-    int result = SDL_UpdateWindowSurface(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_UpdateWindowSurface(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -537,9 +530,9 @@ bool Window::UpdateSurface()
 
 bool Window::UpdateSurfaceRects(rad::Span<SDL_Rect> rects)
 {
-    int result = SDL_UpdateWindowSurfaceRects(m_handle,
+    SDL_bool result = SDL_UpdateWindowSurfaceRects(m_handle,
         rects.data(), static_cast<int>(rects.size()));
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -552,8 +545,8 @@ bool Window::UpdateSurfaceRects(rad::Span<SDL_Rect> rects)
 
 bool Window::DestroySurface()
 {
-    int result = SDL_DestroyWindowSurface(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_DestroyWindowSurface(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -566,8 +559,8 @@ bool Window::DestroySurface()
 
 bool Window::SetKeyboardGrab(bool grabbed)
 {
-    int result = SDL_SetWindowKeyboardGrab(m_handle, grabbed ? SDL_TRUE : SDL_FALSE);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowKeyboardGrab(m_handle, grabbed ? SDL_TRUE : SDL_FALSE);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -580,9 +573,9 @@ bool Window::SetKeyboardGrab(bool grabbed)
 
 bool Window::SetMouseGrab(bool grabbed)
 {
-    int result = SDL_SetWindowMouseGrab(m_handle,
+    SDL_bool result = SDL_SetWindowMouseGrab(m_handle,
         grabbed ? SDL_TRUE : SDL_FALSE);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -605,8 +598,8 @@ bool Window::GetMouseGrab()
 
 bool Window::SetMouseRect(const SDL_Rect* rect)
 {
-    int result = SDL_SetWindowMouseRect(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowMouseRect(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -629,8 +622,8 @@ const SDL_Rect* Window::GetMouseRect()
 
 bool Window::SetOpacity(float opacity)
 {
-    int result = SDL_SetWindowOpacity(m_handle, opacity);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowOpacity(m_handle, opacity);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -658,9 +651,9 @@ bool Window::GetOpacity(float* opacity)
 
 bool Window::SetFocusable(bool focusable)
 {
-    int result = SDL_SetWindowFocusable(m_handle,
+    SDL_bool result = SDL_SetWindowFocusable(m_handle,
         focusable ? SDL_TRUE : SDL_FALSE);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -673,8 +666,8 @@ bool Window::SetFocusable(bool focusable)
 
 bool Window::ShowSystemMenu(int x, int y)
 {
-    int result = SDL_ShowWindowSystemMenu(m_handle, x, y);
-    if (result == 0)
+    SDL_bool result = SDL_ShowWindowSystemMenu(m_handle, x, y);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -687,8 +680,8 @@ bool Window::ShowSystemMenu(int x, int y)
 
 bool Window::SetShape(SDL_Surface* shape)
 {
-    int result = SDL_SetWindowShape(m_handle, shape);
-    if (result == 0)
+    SDL_bool result = SDL_SetWindowShape(m_handle, shape);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -706,8 +699,8 @@ bool Window::SetShape(Surface* shape)
 
 bool Window::Flash(SDL_FlashOperation operation)
 {
-    int result = SDL_FlashWindow(m_handle, operation);
-    if (result == 0)
+    SDL_bool result = SDL_FlashWindow(m_handle, operation);
+    if (result == SDL_TRUE)
     {
         return true;
     }

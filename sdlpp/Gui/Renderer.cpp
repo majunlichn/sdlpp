@@ -61,8 +61,8 @@ void Renderer::Destroy()
 
 bool Renderer::GetOutputSize(int* w, int* h)
 {
-    int result = SDL_GetRenderOutputSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderOutputSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -75,8 +75,8 @@ bool Renderer::GetOutputSize(int* w, int* h)
 
 bool Renderer::GetCurrentOutputSize(int* w, int* h)
 {
-    int result = SDL_GetCurrentRenderOutputSize(m_handle, w, h);
-    if (result == 0)
+    SDL_bool result = SDL_GetCurrentRenderOutputSize(m_handle, w, h);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -89,8 +89,8 @@ bool Renderer::GetCurrentOutputSize(int* w, int* h)
 
 bool Renderer::SetRenderTarget(Texture* texture)
 {
-    int result = SDL_SetRenderTarget(m_handle, texture ? texture->GetHandle() : nullptr);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderTarget(m_handle, texture ? texture->GetHandle() : nullptr);
+    if (result == SDL_TRUE)
     {
         m_renderTarget = texture;
         return true;
@@ -121,8 +121,8 @@ Texture* Renderer::GetRenderTarget()
 bool Renderer::SetLogicalPresentation(int w, int h,
     SDL_RendererLogicalPresentation mode, SDL_ScaleMode scaleMode)
 {
-    int result = SDL_SetRenderLogicalPresentation(m_handle, w, h, mode, scaleMode);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderLogicalPresentation(m_handle, w, h, mode, scaleMode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -136,8 +136,8 @@ bool Renderer::SetLogicalPresentation(int w, int h,
 bool Renderer::GetLogicalPresentation(
     int* w, int* h, SDL_RendererLogicalPresentation* mode, SDL_ScaleMode* scaleMode)
 {
-    int result = SDL_GetRenderLogicalPresentation(m_handle, w, h, mode, scaleMode);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderLogicalPresentation(m_handle, w, h, mode, scaleMode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -150,8 +150,8 @@ bool Renderer::GetLogicalPresentation(
 
 bool Renderer::TransformWindowCoordToRender(float windowX, float windowY, float* x, float* y)
 {
-    int result = SDL_RenderCoordinatesFromWindow(m_handle, windowX, windowY, x, y);
-    if (result == 0)
+    SDL_bool result = SDL_RenderCoordinatesFromWindow(m_handle, windowX, windowY, x, y);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -164,8 +164,8 @@ bool Renderer::TransformWindowCoordToRender(float windowX, float windowY, float*
 
 bool Renderer::TransformRenderCoordToWindow(float x, float y, float* windowX, float* windowY)
 {
-    int result = SDL_RenderCoordinatesToWindow(m_handle, x, y, windowX, windowY);
-    if (result == 0)
+    SDL_bool result = SDL_RenderCoordinatesToWindow(m_handle, x, y, windowX, windowY);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -178,8 +178,8 @@ bool Renderer::TransformRenderCoordToWindow(float x, float y, float* windowX, fl
 
 bool Renderer::TransformCoordToRender(SDL_Event& event)
 {
-    int result = SDL_ConvertEventToRenderCoordinates(m_handle, &event);
-    if (result == 0)
+    SDL_bool result = SDL_ConvertEventToRenderCoordinates(m_handle, &event);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -192,8 +192,8 @@ bool Renderer::TransformCoordToRender(SDL_Event& event)
 
 bool Renderer::SetViewport(const SDL_Rect* rect)
 {
-    int result = SDL_SetRenderViewport(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderViewport(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -211,8 +211,8 @@ bool Renderer::SetViewportFull()
 
 bool Renderer::GetViewport(SDL_Rect* rect)
 {
-    int result = SDL_GetRenderViewport(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderViewport(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -230,8 +230,8 @@ bool Renderer::HasViewportSet()
 
 bool Renderer::SetClipRect(const SDL_Rect* rect)
 {
-    int result = SDL_SetRenderClipRect(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderClipRect(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -249,8 +249,8 @@ bool Renderer::DisableClipping()
 
 bool Renderer::GetClipRect(SDL_Rect* rect)
 {
-    int result = SDL_GetRenderClipRect(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderClipRect(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -268,8 +268,8 @@ bool Renderer::IsClipEnabled()
 
 bool Renderer::SetRenderScale(float scaleX, float scaleY)
 {
-    int result = SDL_SetRenderScale(m_handle, scaleX, scaleY);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderScale(m_handle, scaleX, scaleY);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -282,8 +282,8 @@ bool Renderer::SetRenderScale(float scaleX, float scaleY)
 
 bool Renderer::GetRenderScale(float* scaleX, float* scaleY)
 {
-    int result = SDL_GetRenderScale(m_handle, scaleX, scaleY);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderScale(m_handle, scaleX, scaleY);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -296,8 +296,8 @@ bool Renderer::GetRenderScale(float* scaleX, float* scaleY)
 
 bool Renderer::SetRenderDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-    int result = SDL_SetRenderDrawColor(m_handle, r, g, b, a);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderDrawColor(m_handle, r, g, b, a);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -310,8 +310,8 @@ bool Renderer::SetRenderDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 
 bool Renderer::SetRenderDrawColor(float r, float g, float b, float a)
 {
-    int result = SDL_SetRenderDrawColorFloat(m_handle, r, g, b, a);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderDrawColorFloat(m_handle, r, g, b, a);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -324,8 +324,8 @@ bool Renderer::SetRenderDrawColor(float r, float g, float b, float a)
 
 bool Renderer::GetRenderDrawColor(Uint8* r, Uint8* g, Uint8* b, Uint8* a)
 {
-    int result = SDL_GetRenderDrawColor(m_handle, r, g, b, a);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderDrawColor(m_handle, r, g, b, a);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -338,8 +338,8 @@ bool Renderer::GetRenderDrawColor(Uint8* r, Uint8* g, Uint8* b, Uint8* a)
 
 bool Renderer::GetRenderDrawColor(float* r, float* g, float* b, float* a)
 {
-    int result = SDL_GetRenderDrawColorFloat(m_handle, r, g, b, a);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderDrawColorFloat(m_handle, r, g, b, a);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -352,8 +352,8 @@ bool Renderer::GetRenderDrawColor(float* r, float* g, float* b, float* a)
 
 bool Renderer::SetColorScale(float scale)
 {
-    int result = SDL_SetRenderColorScale(m_handle, scale);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderColorScale(m_handle, scale);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -366,8 +366,8 @@ bool Renderer::SetColorScale(float scale)
 
 bool Renderer::GetColorScale(float* scale)
 {
-    int result = SDL_GetRenderColorScale(m_handle, scale);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderColorScale(m_handle, scale);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -380,8 +380,8 @@ bool Renderer::GetColorScale(float* scale)
 
 bool Renderer::SetBlendMode(SDL_BlendMode blendMode)
 {
-    int result = SDL_SetRenderDrawBlendMode(m_handle, blendMode);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderDrawBlendMode(m_handle, blendMode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -394,8 +394,8 @@ bool Renderer::SetBlendMode(SDL_BlendMode blendMode)
 
 bool Renderer::GetBlendMode(SDL_BlendMode* blendMode)
 {
-    int result = SDL_GetRenderDrawBlendMode(m_handle, blendMode);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderDrawBlendMode(m_handle, blendMode);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -408,8 +408,8 @@ bool Renderer::GetBlendMode(SDL_BlendMode* blendMode)
 
 bool Renderer::Clear()
 {
-    int result = SDL_RenderClear(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_RenderClear(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -422,8 +422,8 @@ bool Renderer::Clear()
 
 bool Renderer::DrawPoint(float x, float y)
 {
-    int result = SDL_RenderPoint(m_handle, x, y);
-    if (result == 0)
+    SDL_bool result = SDL_RenderPoint(m_handle, x, y);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -436,8 +436,8 @@ bool Renderer::DrawPoint(float x, float y)
 
 bool Renderer::DrawPoints(const SDL_FPoint* points, int count)
 {
-    int result = SDL_RenderPoints(m_handle, points, count);
-    if (result == 0)
+    SDL_bool result = SDL_RenderPoints(m_handle, points, count);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -450,8 +450,8 @@ bool Renderer::DrawPoints(const SDL_FPoint* points, int count)
 
 bool Renderer::DrawLine(float x1, float y1, float x2, float y2)
 {
-    int result = SDL_RenderLine(m_handle, x1, y1, x2, y2);
-    if (result == 0)
+    SDL_bool result = SDL_RenderLine(m_handle, x1, y1, x2, y2);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -464,8 +464,8 @@ bool Renderer::DrawLine(float x1, float y1, float x2, float y2)
 
 bool Renderer::DrawLines(const SDL_FPoint* points, int count)
 {
-    int result = SDL_RenderLines(m_handle, points, count);
-    if (result == 0)
+    SDL_bool result = SDL_RenderLines(m_handle, points, count);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -478,8 +478,8 @@ bool Renderer::DrawLines(const SDL_FPoint* points, int count)
 
 bool Renderer::DrawRect(const SDL_FRect* rect)
 {
-    int result = SDL_RenderRect(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_RenderRect(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -492,8 +492,8 @@ bool Renderer::DrawRect(const SDL_FRect* rect)
 
 bool Renderer::DrawRects(const SDL_FRect* rect, int count)
 {
-    int result = SDL_RenderRects(m_handle, rect, count);
-    if (result == 0)
+    SDL_bool result = SDL_RenderRects(m_handle, rect, count);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -506,8 +506,8 @@ bool Renderer::DrawRects(const SDL_FRect* rect, int count)
 
 bool Renderer::FillRect(const SDL_FRect* rect)
 {
-    int result = SDL_RenderFillRect(m_handle, rect);
-    if (result == 0)
+    SDL_bool result = SDL_RenderFillRect(m_handle, rect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -520,8 +520,8 @@ bool Renderer::FillRect(const SDL_FRect* rect)
 
 bool Renderer::FillRects(const SDL_FRect* rect, int count)
 {
-    int result = SDL_RenderFillRects(m_handle, rect, count);
-    if (result == 0)
+    SDL_bool result = SDL_RenderFillRects(m_handle, rect, count);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -534,8 +534,8 @@ bool Renderer::FillRects(const SDL_FRect* rect, int count)
 
 bool Renderer::DrawTexture(Texture* texture, const SDL_FRect* srcRect, const SDL_FRect* dstRect)
 {
-    int result = SDL_RenderTexture(m_handle, texture->GetHandle(), srcRect, dstRect);
-    if (result == 0)
+    SDL_bool result = SDL_RenderTexture(m_handle, texture->GetHandle(), srcRect, dstRect);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -551,9 +551,9 @@ bool Renderer::DrawTextureRotated(Texture* texture,
     const double angle, const SDL_FPoint* center,
     const SDL_FlipMode flip)
 {
-    int result = SDL_RenderTextureRotated(m_handle, texture->GetHandle(),
+    SDL_bool result = SDL_RenderTextureRotated(m_handle, texture->GetHandle(),
         srcRect, dstRect, angle, center, flip);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -568,9 +568,9 @@ bool Renderer::RenderGeometry(Texture* texture,
     const SDL_Vertex* vertices, int numVertices,
     const int* indices, int numIndices)
 {
-    int result = SDL_RenderGeometry(m_handle, texture->GetHandle(),
+    SDL_bool result = SDL_RenderGeometry(m_handle, texture->GetHandle(),
         vertices, numVertices, indices, numIndices);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -588,9 +588,9 @@ bool Renderer::RenderGeometryRaw(Texture* texture,
     int numVertices,
     const void* indices, int numIndices, int indexType)
 {
-    int result = SDL_RenderGeometryRaw(m_handle, texture->GetHandle(),
+    SDL_bool result = SDL_RenderGeometryRaw(m_handle, texture->GetHandle(),
         xy, xyStride, color, colorStride, uv, uvStride, numVertices, indices, numIndices, indexType);
-    if (result == 0)
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -603,8 +603,8 @@ bool Renderer::RenderGeometryRaw(Texture* texture,
 
 bool Renderer::Present()
 {
-    int result = SDL_RenderPresent(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_RenderPresent(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -617,8 +617,8 @@ bool Renderer::Present()
 
 bool Renderer::Flush()
 {
-    int result = SDL_FlushRenderer(m_handle);
-    if (result == 0)
+    SDL_bool result = SDL_FlushRenderer(m_handle);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -631,8 +631,8 @@ bool Renderer::Flush()
 
 bool Renderer::SetVSync(int vsync)
 {
-    int result = SDL_SetRenderVSync(m_handle, vsync);
-    if (result == 0)
+    SDL_bool result = SDL_SetRenderVSync(m_handle, vsync);
+    if (result == SDL_TRUE)
     {
         return true;
     }
@@ -646,8 +646,8 @@ bool Renderer::SetVSync(int vsync)
 
 bool Renderer::GetVSync(int* vsync)
 {
-    int result = SDL_GetRenderVSync(m_handle, vsync);
-    if (result == 0)
+    SDL_bool result = SDL_GetRenderVSync(m_handle, vsync);
+    if (result == SDL_TRUE)
     {
         return true;
     }
