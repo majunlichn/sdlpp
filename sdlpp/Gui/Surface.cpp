@@ -14,7 +14,7 @@ rad::Ref<Surface> Surface::Create(int width, int height, SDL_PixelFormat format)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_CreateSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_CreateSurface failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -29,7 +29,7 @@ rad::Ref<Surface> Surface::CreateFormPixels(
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_CreateSurfaceFrom failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_CreateSurfaceFrom failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -43,7 +43,7 @@ rad::Ref<Surface> Surface::CreateFromBMP(SDL_IOStream* src, SDL_bool closeio)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_LoadBMP_IO failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_LoadBMP_IO failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -57,7 +57,7 @@ rad::Ref<Surface> Surface::CreateFromBMP(const char* file)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_LoadBMP_IO failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_LoadBMP_IO failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -69,7 +69,7 @@ Surface::Surface(SDL_Surface* handle, bool isManaged) :
     m_propID = SDL_GetSurfaceProperties(m_handle);
     if (m_propID == 0)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetSurfaceProperties failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetSurfaceProperties failed: {}", SDL_GetError());
     }
 }
 
@@ -96,7 +96,7 @@ bool Surface::SaveBMP(SDL_IOStream* dst, SDL_bool closeio)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SaveBMP_IO failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SaveBMP_IO failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -110,7 +110,7 @@ bool Surface::SaveBMP(const char* file)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SaveBMP failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SaveBMP failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -124,7 +124,7 @@ bool Surface::SetColorSpace(SDL_Colorspace colorspace)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfaceColorspace failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfaceColorspace failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -143,7 +143,7 @@ bool Surface::SetPalette(SDL_Palette* palette)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfacePalette failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfacePalette failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -157,7 +157,7 @@ bool Surface::Lock()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_LockSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_LockSurface failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -176,7 +176,7 @@ bool Surface::SetRLE(int flag)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfaceRLE failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfaceRLE failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -195,7 +195,7 @@ bool Surface::SetColorKey(int flag, Uint32 key)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfaceColorKey failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfaceColorKey failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -214,7 +214,7 @@ bool Surface::GetColorKey(Uint32* key)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetSurfaceColorKey failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetSurfaceColorKey failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -228,7 +228,7 @@ bool Surface::SetColorMod(Uint8 r, Uint8 g, Uint8 b)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfaceColorMod failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfaceColorMod failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -242,7 +242,7 @@ bool Surface::GetColorMod(Uint8* r, Uint8* g, Uint8* b)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetSurfaceColorMod failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetSurfaceColorMod failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -256,7 +256,7 @@ bool Surface::SetAlphaMode(Uint8 alpha)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfaceAlphaMod failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfaceAlphaMod failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -270,7 +270,7 @@ bool Surface::GetAlphaMode(Uint8* alpha)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetSurfaceAlphaMod failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetSurfaceAlphaMod failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -284,7 +284,7 @@ bool Surface::SetBlendMode(SDL_BlendMode blendMode)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfaceBlendMode failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfaceBlendMode failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -298,7 +298,7 @@ bool Surface::GetBlendMode(SDL_BlendMode* blendMode)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetSurfaceBlendMode failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetSurfaceBlendMode failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -312,7 +312,7 @@ bool Surface::SetClipRect(const SDL_Rect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetSurfaceClipRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetSurfaceClipRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -331,7 +331,7 @@ bool Surface::GetClipRect(SDL_Rect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetSurfaceClipRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetSurfaceClipRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -345,7 +345,7 @@ bool Surface::Flip(SDL_FlipMode flip)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_FlipSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_FlipSurface failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -359,7 +359,7 @@ rad::Ref<Surface> Surface::Duplicate()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_DuplicateSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_DuplicateSurface failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -373,7 +373,7 @@ rad::Ref<Surface> Surface::Convert(SDL_PixelFormat format)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ConvertSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ConvertSurface failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -389,7 +389,7 @@ rad::Ref<Surface> Surface::Convert(
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ConvertSurfaceFormatAndColorspace failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ConvertSurfaceFormatAndColorspace failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -403,7 +403,7 @@ bool Surface::PremultiplyAlpha(bool linear)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_PremultiplySurfaceAlpha failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_PremultiplySurfaceAlpha failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -417,7 +417,7 @@ bool Surface::Clear(float r, float g, float b, float a)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ClearSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ClearSurface failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -431,7 +431,7 @@ bool Surface::FillRect(const SDL_Rect* rect, Uint32 color)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_FillSurfaceRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_FillSurfaceRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -445,7 +445,7 @@ bool Surface::FillRects(const SDL_Rect* rects, int count, Uint32 color)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_FillSurfaceRects failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_FillSurfaceRects failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -459,7 +459,7 @@ bool Surface::Blit(Surface* src, const SDL_Rect* srcRect, Surface* dst, SDL_Rect
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BlitSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BlitSurface failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -474,7 +474,7 @@ bool Surface::BlitUnchecked(Surface* src, const SDL_Rect* srcRect, Surface* dst,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BlitSurfaceUnchecked failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BlitSurfaceUnchecked failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -489,7 +489,7 @@ bool Surface::BlitScaled(Surface* src, const SDL_Rect* srcRect,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BlitSurfaceScaled failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BlitSurfaceScaled failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -505,7 +505,7 @@ bool Surface::BlitUncheckedScaled(Surface* src, const SDL_Rect* srcRect,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BlitSurfaceUncheckedScaled failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BlitSurfaceUncheckedScaled failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -519,7 +519,7 @@ bool Surface::BlitTiled(Surface* src, const SDL_Rect* srcRect, Surface* dst, SDL
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BlitSurfaceTiled failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BlitSurfaceTiled failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -536,7 +536,7 @@ bool Surface::BlitTiledWithScale(Surface* src, const SDL_Rect* srcRect,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BlitSurfaceTiledWithScale failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BlitSurfaceTiledWithScale failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -557,7 +557,7 @@ bool Surface::ReadPixel(int x, int y, Uint8* r, Uint8* g, Uint8* b, Uint8* a)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ReadSurfacePixel failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ReadSurfacePixel failed: {}", SDL_GetError());
         return false;
     }
 }

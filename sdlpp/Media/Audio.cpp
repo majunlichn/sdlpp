@@ -66,7 +66,7 @@ bool LoadWAV(SDL_IOStream* src, SDL_bool close, SDL_AudioSpec* spec,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_LoadWAV_IO failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_LoadWAV_IO failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -81,7 +81,7 @@ bool LoadWAVFromFile(std::string_view path, SDL_AudioSpec* spec,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_LoadWAV failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_LoadWAV failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -95,7 +95,7 @@ bool MixAudioData(Uint8* dst, const Uint8* src, SDL_AudioFormat format, Uint32 s
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_MixAudio failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_MixAudio failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -111,7 +111,7 @@ bool ConvertAudioData(const SDL_AudioSpec* srcSpec, const Uint8* srcData, int sr
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ConvertAudioSamples failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ConvertAudioSamples failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -123,7 +123,7 @@ AudioDevice::AudioDevice(SDL_AudioDeviceID id) :
     SDL_bool result = SDL_GetAudioDeviceFormat(m_id, &m_format, &m_sampleFrames);
     if (result != SDL_TRUE)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetAudioDeviceFormat failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetAudioDeviceFormat failed: {}", SDL_GetError());
     }
 }
 
@@ -140,7 +140,7 @@ bool AudioDevice::Open(const SDL_AudioSpec* spec)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_OpenAudioDevice failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_OpenAudioDevice failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -154,7 +154,7 @@ bool AudioDevice::Pause()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_PauseAudioDevice failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_PauseAudioDevice failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -168,7 +168,7 @@ bool AudioDevice::Resume()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ResumeAudioDevice failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ResumeAudioDevice failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -192,7 +192,7 @@ bool AudioDevice::BindStreams(SDL_AudioStream** streams, int streamCount)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BindAudioStreams failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BindAudioStreams failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -211,7 +211,7 @@ bool AudioDevice::BindStream(SDL_AudioStream* stream)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_BindAudioStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_BindAudioStream failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -230,7 +230,7 @@ bool AudioDevice::SetAudioPostmixCallback(SDL_AudioPostmixCallback callback, voi
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetAudioPostmixCallback failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetAudioPostmixCallback failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -244,7 +244,7 @@ rad::Ref<AudioStream> AudioStream::Create(const SDL_AudioSpec* srcSpec, const SD
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_CreateAudioStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_CreateAudioStream failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -259,7 +259,7 @@ rad::Ref<AudioStream> AudioStream::Create(SDL_AudioDeviceID deviceID, const SDL_
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_OpenAudioDeviceStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_OpenAudioDeviceStream failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -274,7 +274,7 @@ rad::Ref<AudioStream> AudioStream::CreateDefaultPlayback(const SDL_AudioSpec* sp
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_OpenAudioDeviceStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_OpenAudioDeviceStream failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -285,7 +285,7 @@ AudioStream::AudioStream(SDL_AudioStream* handle) :
     m_propID = SDL_GetAudioStreamProperties(m_handle);
     if (m_propID == 0)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetAudioStreamProperties failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetAudioStreamProperties failed: {}", SDL_GetError());
     }
 }
 
@@ -352,7 +352,7 @@ bool AudioStream::Flush()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_FlushAudioStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_FlushAudioStream failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -366,7 +366,7 @@ bool AudioStream::Clear()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ClearAudioStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ClearAudioStream failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -380,7 +380,7 @@ bool AudioStream::Pause()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_PauseAudioStreamDevice failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_PauseAudioStreamDevice failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -394,7 +394,7 @@ bool AudioStream::Resume()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ResumeAudioStreamDevice failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ResumeAudioStreamDevice failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -408,7 +408,7 @@ bool AudioStream::Lock()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_LockAudioStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_LockAudioStream failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -422,7 +422,7 @@ bool AudioStream::Unlock()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_UnlockAudioStream failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_UnlockAudioStream failed: {}", SDL_GetError());
         return false;
     }
 }

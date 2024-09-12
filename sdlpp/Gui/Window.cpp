@@ -27,13 +27,13 @@ bool Window::Create(const char* title, int w, int h, SDL_WindowFlags flags)
         }
         else
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetWindowID failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetWindowID failed: {}", SDL_GetError());
             return false;
         }
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_CreateWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_CreateWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -53,7 +53,7 @@ float Window::GetPixelDensity()
     float density = SDL_GetWindowPixelDensity(m_handle);
     if (density == 0)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowPixelDensity failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowPixelDensity failed: {}", SDL_GetError());
     }
     return density;
 }
@@ -63,7 +63,7 @@ float Window::GetDisplayScale()
     float scale = SDL_GetWindowDisplayScale(m_handle);
     if (scale == 0)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowDisplayScale failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowDisplayScale failed: {}", SDL_GetError());
     }
     return scale;
 }
@@ -77,7 +77,7 @@ bool Window::SetFullscreenMode(const SDL_DisplayMode* mode)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowFullscreenMode failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowFullscreenMode failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -102,7 +102,7 @@ const void* Window::GetICCProfile(size_t* size)
     const void* data = SDL_GetWindowICCProfile(m_handle, size);
     if (data == nullptr)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowICCProfile failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowICCProfile failed: {}", SDL_GetError());
     }
     return data;
 }
@@ -112,7 +112,7 @@ Uint32 Window::GetPixelFormat()
     Uint32 format = SDL_GetWindowPixelFormat(m_handle);
     if (format == SDL_PIXELFORMAT_UNKNOWN)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowPixelFormat failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowPixelFormat failed: {}", SDL_GetError());
     }
     return format;
 }
@@ -131,7 +131,7 @@ bool Window::SetTitle(std::string_view title)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowTitle failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowTitle failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -150,7 +150,7 @@ bool Window::SetIcon(SDL_Surface* icon)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowIcon failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowIcon failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -169,7 +169,7 @@ bool Window::SetPosition(int x, int y)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowPosition failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowPosition failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -183,7 +183,7 @@ bool Window::GetPosition(int* x, int* y)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowPosition failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowPosition failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -197,7 +197,7 @@ bool Window::SetSize(int w, int h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -211,7 +211,7 @@ bool Window::GetSize(int* w, int* h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -225,7 +225,7 @@ bool Window::SetAspectRatio(float minAspect, float maxAspect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowAspectRatio failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowAspectRatio failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -239,7 +239,7 @@ bool Window::GetAspectRatio(float* minAspect, float* maxAspect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowAspectRatio failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowAspectRatio failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -253,7 +253,7 @@ bool Window::GetSizeInPixels(int* w, int* h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowSizeInPixels failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowSizeInPixels failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -267,7 +267,7 @@ bool Window::SetMinimumSize(int w, int h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowMinimumSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowMinimumSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -281,7 +281,7 @@ bool Window::GetMinimumSize(int* w, int* h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowMinimumSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowMinimumSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -295,7 +295,7 @@ bool Window::SetMaximumSize(int w, int h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowMaximumSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowMaximumSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -309,7 +309,7 @@ bool Window::GetMaximumSize(int* w, int* h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowMaximumSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowMaximumSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -324,7 +324,7 @@ bool Window::SetBordered(bool bordered)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowBordered failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowBordered failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -339,7 +339,7 @@ bool Window::SetResizable(bool resizable)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowResizable failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowResizable failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -354,7 +354,7 @@ bool Window::SetAlwaysOnTop(bool onTop)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowAlwaysOnTop failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowAlwaysOnTop failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -368,7 +368,7 @@ bool Window::Show()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ShowWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ShowWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -382,7 +382,7 @@ bool Window::Hide()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_HideWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_HideWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -396,7 +396,7 @@ bool Window::Raise()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RaiseWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RaiseWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -410,7 +410,7 @@ bool Window::Maximize()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_MaximizeWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_MaximizeWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -424,7 +424,7 @@ bool Window::Minimize()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_MinimizeWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_MinimizeWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -438,7 +438,7 @@ bool Window::Restore()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RestoreWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RestoreWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -452,7 +452,7 @@ bool Window::SetFullscreen(bool fullscreen)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowFullscreen failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowFullscreen failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -466,7 +466,7 @@ bool Window::Sync()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SyncWindow timed out!");
+        SDL_LOG(err, "SDL_SyncWindow timed out!");
         return false;
     }
 }
@@ -481,7 +481,7 @@ SDL_Surface* Window::GetSurface()
     SDL_Surface* surface = SDL_GetWindowSurface(m_handle);
     if (surface == nullptr)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowSurface failed: {}", SDL_GetError());
     }
     return surface;
 }
@@ -495,7 +495,7 @@ bool Window::SetSurfaceVSync(int vsync)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowSurfaceVSync failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowSurfaceVSync failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -509,7 +509,7 @@ bool Window::GetSurfaceVSync(int* vsync)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowSurfaceVSync failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowSurfaceVSync failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -523,7 +523,7 @@ bool Window::UpdateSurface()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_UpdateWindowSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_UpdateWindowSurface failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -538,7 +538,7 @@ bool Window::UpdateSurfaceRects(rad::Span<SDL_Rect> rects)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_UpdateWindowSurfaceRects failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_UpdateWindowSurfaceRects failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -552,7 +552,7 @@ bool Window::DestroySurface()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_DestroyWindowSurface failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_DestroyWindowSurface failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -566,7 +566,7 @@ bool Window::SetKeyboardGrab(bool grabbed)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowKeyboardGrab failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowKeyboardGrab failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -581,7 +581,7 @@ bool Window::SetMouseGrab(bool grabbed)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowMouseGrab failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowMouseGrab failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -605,7 +605,7 @@ bool Window::SetMouseRect(const SDL_Rect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowMouseRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowMouseRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -629,7 +629,7 @@ bool Window::SetOpacity(float opacity)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowOpacity failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowOpacity failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -644,7 +644,7 @@ bool Window::GetOpacity(float* opacity)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetWindowOpacity failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetWindowOpacity failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -659,7 +659,7 @@ bool Window::SetFocusable(bool focusable)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowFocusable failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowFocusable failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -673,7 +673,7 @@ bool Window::ShowSystemMenu(int x, int y)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ShowWindowSystemMenu failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ShowWindowSystemMenu failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -687,7 +687,7 @@ bool Window::SetShape(SDL_Surface* shape)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetWindowShape failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetWindowShape failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -706,7 +706,7 @@ bool Window::Flash(SDL_FlashOperation operation)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_FlashWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_FlashWindow failed: {}", SDL_GetError());
         return false;
     }
 }

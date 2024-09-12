@@ -35,17 +35,17 @@ bool Renderer::Init()
     if (m_handle)
     {
         m_name = SDL_GetRendererName(m_handle);
-        RAD_LOG(GetLogger(), info, "Renderer created: {}", m_name);
+        SDL_LOG(info, "Renderer created: {}", m_name);
         m_propID = SDL_GetRendererProperties(m_handle);
         if (m_propID == 0)
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetRendererProperties failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetRendererProperties failed: {}", SDL_GetError());
         }
         return true;
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_CreateRenderer failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_CreateRenderer failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -68,7 +68,7 @@ bool Renderer::GetOutputSize(int* w, int* h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderOutputSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderOutputSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -82,7 +82,7 @@ bool Renderer::GetCurrentOutputSize(int* w, int* h)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetCurrentRenderOutputSize failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetCurrentRenderOutputSize failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -97,7 +97,7 @@ bool Renderer::SetRenderTarget(Texture* texture)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderTarget failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderTarget failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -128,7 +128,7 @@ bool Renderer::SetLogicalPresentation(int w, int h,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderLogicalPresentation failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderLogicalPresentation failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -143,7 +143,7 @@ bool Renderer::GetLogicalPresentation(
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderLogicalPresentation failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderLogicalPresentation failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -157,7 +157,7 @@ bool Renderer::TransformWindowCoordToRender(float windowX, float windowY, float*
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderCoordinatesFromWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderCoordinatesFromWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -171,7 +171,7 @@ bool Renderer::TransformRenderCoordToWindow(float x, float y, float* windowX, fl
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderCoordinatesToWindow failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderCoordinatesToWindow failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -185,7 +185,7 @@ bool Renderer::TransformCoordToRender(SDL_Event& event)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_ConvertEventToRenderCoordinates failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_ConvertEventToRenderCoordinates failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -199,7 +199,7 @@ bool Renderer::SetViewport(const SDL_Rect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderViewport failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderViewport failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -218,7 +218,7 @@ bool Renderer::GetViewport(SDL_Rect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderViewport failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderViewport failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -237,7 +237,7 @@ bool Renderer::SetClipRect(const SDL_Rect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderClipRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderClipRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -256,7 +256,7 @@ bool Renderer::GetClipRect(SDL_Rect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderClipRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderClipRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -275,7 +275,7 @@ bool Renderer::SetRenderScale(float scaleX, float scaleY)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderScale failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderScale failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -289,7 +289,7 @@ bool Renderer::GetRenderScale(float* scaleX, float* scaleY)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderScale failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderScale failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -303,7 +303,7 @@ bool Renderer::SetRenderDrawColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderDrawColor failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderDrawColor failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -317,7 +317,7 @@ bool Renderer::SetRenderDrawColor(float r, float g, float b, float a)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderDrawColorFloat failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderDrawColorFloat failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -331,7 +331,7 @@ bool Renderer::GetRenderDrawColor(Uint8* r, Uint8* g, Uint8* b, Uint8* a)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderDrawColor failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderDrawColor failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -345,7 +345,7 @@ bool Renderer::GetRenderDrawColor(float* r, float* g, float* b, float* a)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderDrawColorFloat failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderDrawColorFloat failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -359,7 +359,7 @@ bool Renderer::SetColorScale(float scale)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderColorScale failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderColorScale failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -373,7 +373,7 @@ bool Renderer::GetColorScale(float* scale)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderColorScale failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderColorScale failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -387,7 +387,7 @@ bool Renderer::SetBlendMode(SDL_BlendMode blendMode)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderDrawBlendMode failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetRenderDrawBlendMode failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -401,7 +401,7 @@ bool Renderer::GetBlendMode(SDL_BlendMode* blendMode)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderDrawBlendMode failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderDrawBlendMode failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -415,7 +415,7 @@ bool Renderer::Clear()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderClear failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderClear failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -429,7 +429,7 @@ bool Renderer::DrawPoint(float x, float y)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderPoint failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderPoint failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -443,7 +443,7 @@ bool Renderer::DrawPoints(const SDL_FPoint* points, int count)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderPoints failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderPoints failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -457,7 +457,7 @@ bool Renderer::DrawLine(float x1, float y1, float x2, float y2)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderLine failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderLine failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -471,7 +471,7 @@ bool Renderer::DrawLines(const SDL_FPoint* points, int count)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderLines failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderLines failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -485,7 +485,7 @@ bool Renderer::DrawRect(const SDL_FRect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -499,7 +499,7 @@ bool Renderer::DrawRects(const SDL_FRect* rect, int count)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderRects failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderRects failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -513,7 +513,7 @@ bool Renderer::FillRect(const SDL_FRect* rect)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderFillRect failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderFillRect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -527,7 +527,7 @@ bool Renderer::FillRects(const SDL_FRect* rect, int count)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderFillRects failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderFillRects failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -541,7 +541,7 @@ bool Renderer::DrawTexture(Texture* texture, const SDL_FRect* srcRect, const SDL
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderTexture failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderTexture failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -559,7 +559,7 @@ bool Renderer::DrawTextureRotated(Texture* texture,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderTextureRotated failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderTextureRotated failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -576,7 +576,7 @@ bool Renderer::RenderGeometry(Texture* texture,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderGeometry failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderGeometry failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -596,7 +596,7 @@ bool Renderer::RenderGeometryRaw(Texture* texture,
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderGeometryRaw failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderGeometryRaw failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -610,7 +610,7 @@ bool Renderer::Present()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_RenderPresent failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_RenderPresent failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -624,7 +624,7 @@ bool Renderer::Flush()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_FlushRenderer failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_FlushRenderer failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -638,7 +638,7 @@ bool Renderer::SetVSync(int vsync)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetRenderVSync({}) failed: {}",
+        SDL_LOG(err, "SDL_SetRenderVSync({}) failed: {}",
             vsync, SDL_GetError());
         return false;
     }
@@ -653,7 +653,7 @@ bool Renderer::GetVSync(int* vsync)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetRenderVSync failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetRenderVSync failed: {}", SDL_GetError());
         return false;
     }
 }

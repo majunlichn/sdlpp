@@ -159,7 +159,7 @@ AudioMixer::AudioMixer()
     if ((m_modules != 0) && !moduleNames.empty())
     {
         moduleNames.pop_back();
-        RAD_LOG(GetLogger(), info, "Initialized audio modules: {}", moduleNames);
+        SDL_LOG(info, "Initialized audio modules: {}", moduleNames);
     }
 }
 
@@ -182,7 +182,7 @@ bool AudioMixer::Open(SDL_AudioDeviceID deviceID, const SDL_AudioSpec* spec)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_OpenAudio failed: {}", SDL_GetError());
+        SDL_LOG(err, "Mix_OpenAudio failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -283,7 +283,7 @@ rad::Ref<Music> AudioMixer::LoadMusic(std::string_view fileName)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_LoadMUS(\"{}\") failed: {}",
+        SDL_LOG(err, "Mix_LoadMUS(\"{}\") failed: {}",
             fileName, SDL_GetError());
         return nullptr;
     }
@@ -389,7 +389,7 @@ bool AudioMixer::RegisterEffect(int channel, Mix_EffectFunc_t f, Mix_EffectDone_
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_RegisterEffect failed: {}", SDL_GetError());
+        SDL_LOG(err, "Mix_RegisterEffect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -403,7 +403,7 @@ bool AudioMixer::UnregisterEffect(int channel, Mix_EffectFunc_t f)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_UnregisterEffect failed: {}", SDL_GetError());
+        SDL_LOG(err, "Mix_UnregisterEffect failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -417,7 +417,7 @@ bool AudioMixer::UnregisterAllEffects(int channel)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_UnregisterAllEffects failed: {}", SDL_GetError());
+        SDL_LOG(err, "Mix_UnregisterAllEffects failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -436,7 +436,7 @@ bool AudioMixer::SetPosition(int channel, Sint16 angle, Uint8 distance)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_SetPosition failed: {}", SDL_GetError());
+        SDL_LOG(err, "Mix_SetPosition failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -450,7 +450,7 @@ bool AudioMixer::SetDistance(int channel, Uint8 distance)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_SetDistance failed: {}", SDL_GetError());
+        SDL_LOG(err, "Mix_SetDistance failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -464,7 +464,7 @@ bool AudioMixer::SetReverseStereo(int channel, bool flip)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "Mix_SetReverseStereo failed: {}", SDL_GetError());
+        SDL_LOG(err, "Mix_SetReverseStereo failed: {}", SDL_GetError());
         return false;
     }
 }

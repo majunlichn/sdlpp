@@ -8,4 +8,6 @@ namespace sdl
 
 spdlog::logger* GetLogger();
 
+#define SDL_LOG(Level, ...) RAD_LOG(sdl::GetLogger(), Level, __VA_ARGS__)
+
 } // namespace sdl

@@ -42,7 +42,7 @@ bool Timer::StartMS(Uint32 interval, TimerCallbackMS callback, void* userData)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_AddTimer failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_AddTimer failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -57,7 +57,7 @@ bool Timer::StartNS(Uint64 interval, TimerCallbackNS callback, void* userData)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_AddTimerNS failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_AddTimerNS failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -68,7 +68,7 @@ void Timer::Stop()
     {
         if (SDL_RemoveTimer(m_id) != 0)
         {
-            RAD_LOG(GetLogger(), err, "SDL_RemoveTimer failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_RemoveTimer failed: {}", SDL_GetError());
         }
         m_id = 0;
     }

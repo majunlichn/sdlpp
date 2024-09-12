@@ -35,28 +35,27 @@ bool Application::Init(int argc, char** argv)
     if (result == SDL_TRUE)
     {
         int version = SDL_GetVersion();
-        auto logger = GetLogger();
-        RAD_LOG(logger, info, "SDL initialized on {}: {}.{}.{} ({})", SDL_GetPlatform(),
+        SDL_LOG(info, "SDL initialized on {}: {}.{}.{} ({})", SDL_GetPlatform(),
             SDL_VERSIONNUM_MAJOR(version), SDL_VERSIONNUM_MINOR(version), SDL_VERSIONNUM_MICRO(version),
             SDL_GetRevision());
         if (const char* pWorkingDir = SDL_GetBasePath())
         {
-            RAD_LOG(logger, info, "Working Directory: {}", pWorkingDir);
+            SDL_LOG(info, "Working Directory: {}", pWorkingDir);
         }
         if (const char* pVideoDriver = SDL_GetCurrentVideoDriver())
         {
-            RAD_LOG(logger, info, "Current Video Driver: {}", pVideoDriver);
+            SDL_LOG(info, "Current Video Driver: {}", pVideoDriver);
         }
         if (const char* pAudioDriver = SDL_GetCurrentAudioDriver())
         {
-            RAD_LOG(logger, info, "Current Audio Driver: {}", pAudioDriver);
+            SDL_LOG(info, "Current Audio Driver: {}", pAudioDriver);
         }
         UpdateDisplayInfos();
         return true;
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_Init failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_Init failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -66,7 +65,7 @@ void Application::Destroy()
     if (g_app)
     {
         SDL_Quit();
-        RAD_LOG(GetLogger(), info, "SDL quited.");
+        SDL_LOG(info, "SDL quited.");
         g_app = nullptr;
     }
 }
@@ -103,7 +102,7 @@ bool Application::PushEvent(SDL_Event& event)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_PushEvent failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_PushEvent failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -118,41 +117,40 @@ void Application::OnEvent(const SDL_Event& event)
         }
     }
 
-    auto logger = GetLogger();
     switch (event.type)
     {
     case SDL_EVENT_QUIT: // User-requested quit.
         break;
     case SDL_EVENT_TERMINATING:
-        RAD_LOG(logger, info, "SDL_EVENT_TERMINATING: "
+        SDL_LOG(info, "SDL_EVENT_TERMINATING: "
             "The application is being terminated by the OS.");
         break;
     case SDL_EVENT_LOW_MEMORY:
-        RAD_LOG(logger, info, "SDL_EVENT_LOW_MEMORY: "
+        SDL_LOG(info, "SDL_EVENT_LOW_MEMORY: "
             "The application is low on memory, free memory if possible.");
         break;
     case SDL_EVENT_WILL_ENTER_BACKGROUND:
-        RAD_LOG(logger, info, "SDL_EVENT_WILL_ENTER_BACKGROUND: "
+        SDL_LOG(info, "SDL_EVENT_WILL_ENTER_BACKGROUND: "
             "The application is about to enter the background.");
         break;
     case SDL_EVENT_DID_ENTER_BACKGROUND:
-        RAD_LOG(logger, info, "SDL_EVENT_DID_ENTER_BACKGROUND: "
+        SDL_LOG(info, "SDL_EVENT_DID_ENTER_BACKGROUND: "
             "The application did enter the background and may not get CPU for some time.");
         break;
     case SDL_EVENT_WILL_ENTER_FOREGROUND:
-        RAD_LOG(logger, info, "SDL_EVENT_WILL_ENTER_FOREGROUND: "
+        SDL_LOG(info, "SDL_EVENT_WILL_ENTER_FOREGROUND: "
             "The application is about to enter the foreground.");
         break;
     case SDL_EVENT_DID_ENTER_FOREGROUND:
-        RAD_LOG(logger, info, "SDL_EVENT_DID_ENTER_FOREGROUND: "
+        SDL_LOG(info, "SDL_EVENT_DID_ENTER_FOREGROUND: "
             "The application is now interactive.");
         break;
     case SDL_EVENT_LOCALE_CHANGED:
-        RAD_LOG(logger, info, "SDL_EVENT_LOCALE_CHANGED: "
+        SDL_LOG(info, "SDL_EVENT_LOCALE_CHANGED: "
             "The user's locale preferences have changed.");
         break;
     case SDL_EVENT_SYSTEM_THEME_CHANGED:
-        RAD_LOG(logger, info, "SDL_EVENT_SYSTEM_THEME_CHANGED: "
+        SDL_LOG(info, "SDL_EVENT_SYSTEM_THEME_CHANGED: "
             "The system theme changed.");
         break;
     case SDL_EVENT_DISPLAY_ORIENTATION:
@@ -160,7 +158,7 @@ void Application::OnEvent(const SDL_Event& event)
     case SDL_EVENT_DISPLAY_REMOVED:
     case SDL_EVENT_DISPLAY_MOVED:
     case SDL_EVENT_DISPLAY_CONTENT_SCALE_CHANGED:
-        RAD_LOG(logger, info, "Display state changed.");
+        SDL_LOG(info, "Display state changed.");
         UpdateDisplayInfos();
         break;
     }
@@ -193,7 +191,7 @@ bool Application::EnableScreenSaver()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_EnableScreenSaver failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_EnableScreenSaver failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -207,7 +205,7 @@ bool Application::DisableScreenSaver()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_DisableScreenSaver failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_DisableScreenSaver failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -221,7 +219,7 @@ bool Application::SetClipboardText(const char* text)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetClipboardText failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetClipboardText failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -236,7 +234,7 @@ std::string Application::GetClipboardText()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetClipboardText failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetClipboardText failed: {}", SDL_GetError());
     }
     return buffer;
 }
@@ -255,7 +253,7 @@ bool Application::SetPrimarySelectionText(const char* text)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetPrimarySelectionText failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetPrimarySelectionText failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -270,7 +268,7 @@ std::string Application::GetPrimarySelectionText()
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetPrimarySelectionText failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetPrimarySelectionText failed: {}", SDL_GetError());
     }
     return buffer;
 }
@@ -290,7 +288,7 @@ bool Application::SetClipboardData(SDL_ClipboardDataCallback callback, SDL_Clipb
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_SetClipboardData failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_SetClipboardData failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -308,7 +306,7 @@ const void* Application::GetClipboardData(const char* mimeType, size_t* size)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetClipboardData failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetClipboardData failed: {}", SDL_GetError());
         return nullptr;
     }
 }
@@ -324,7 +322,7 @@ void Application::UpdateDisplayInfos()
     const SDL_DisplayID* ids = SDL_GetDisplays(&displayCount);
     if (ids == nullptr)
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetDisplays failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetDisplays failed: {}", SDL_GetError());
         m_displays.clear();
         return;
     }
@@ -341,18 +339,18 @@ void Application::UpdateDisplayInfos()
         }
         else
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetDisplayName failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetDisplayName failed: {}", SDL_GetError());
             info.name = "Unknown";
         }
 
         if (SDL_GetDisplayBounds(id, &info.bounds) != SDL_TRUE)
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetDisplayBounds failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetDisplayBounds failed: {}", SDL_GetError());
         }
 
         if (SDL_GetDisplayUsableBounds(id, &info.usableBounds) != SDL_TRUE)
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetDisplayUsableBounds failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetDisplayUsableBounds failed: {}", SDL_GetError());
         }
 
         info.naturalOrientation = SDL_GetNaturalDisplayOrientation(id);
@@ -361,7 +359,7 @@ void Application::UpdateDisplayInfos()
         info.scale = SDL_GetDisplayContentScale(id);
         if (info.scale == 0.0f)
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetDisplayContentScale failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetDisplayContentScale failed: {}", SDL_GetError());
         }
 
         info.propID = SDL_GetDisplayProperties(id);
@@ -374,7 +372,7 @@ void Application::UpdateDisplayInfos()
         }
         else
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetDisplayProperties failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetDisplayProperties failed: {}", SDL_GetError());
         }
 
         int count = 0;
@@ -388,7 +386,7 @@ void Application::UpdateDisplayInfos()
         info.desktopMode = SDL_GetDesktopDisplayMode(id);
         info.currentMode = SDL_GetCurrentDisplayMode(id);
 
-        RAD_LOG(GetLogger(), info, "Display#{}: {} ({}x{}@{}Hz, {})",
+        SDL_LOG(info, "Display#{}: {} ({}x{}@{}Hz, {})",
             i, info.name, info.currentMode->w, info.currentMode->h,
             info.currentMode->refresh_rate,
             SDL_GetPixelFormatName(info.currentMode->format));

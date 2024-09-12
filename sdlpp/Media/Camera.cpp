@@ -54,17 +54,17 @@ bool Camera::Open(const SDL_CameraSpec* spec)
     m_handle = SDL_OpenCamera(m_id, spec);
     if (m_handle)
     {
-        RAD_LOG(GetLogger(), info, "Camera {} opened successfully.", m_name);
+        SDL_LOG(info, "Camera {} opened successfully.", m_name);
         m_propID = SDL_GetCameraProperties(m_handle);
         if (m_propID == 0)
         {
-            RAD_LOG(GetLogger(), err, "SDL_GetCameraProperties failed: {}", SDL_GetError());
+            SDL_LOG(err, "SDL_GetCameraProperties failed: {}", SDL_GetError());
         }
         return true;
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_OpenCameraDevice failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_OpenCameraDevice failed: {}", SDL_GetError());
         return false;
     }
 }
@@ -90,7 +90,7 @@ bool Camera::GetFormat(SDL_CameraSpec* spec)
     }
     else
     {
-        RAD_LOG(GetLogger(), err, "SDL_GetCameraFormat failed: {}", SDL_GetError());
+        SDL_LOG(err, "SDL_GetCameraFormat failed: {}", SDL_GetError());
         return false;
     }
 }
