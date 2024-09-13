@@ -15,16 +15,43 @@ bool WindowTest::Init()
 {
     SDL_WindowFlags flags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_VULKAN;
     Create("WindowTest", 800, 600, flags);
+
+    m_renderer = RAD_NEW sdl::Renderer(this);
+    if (!m_renderer->Init())
+    {
+        return false;
+    }
+    m_guiContext = RAD_NEW sdl::GuiContext(this, m_renderer);
+    if (!m_guiContext->Init())
+    {
+        return false;
+    }
     return true;
 }
 
 bool WindowTest::OnEvent(const SDL_Event& event)
 {
+    if (m_guiContext)
+    {
+        m_guiContext->ProcessEvent(event);
+    }
     return Window::OnEvent(event);
 }
 
 void WindowTest::OnIdle()
 {
+    if (GetFlags() & SDL_WINDOW_MINIMIZED)
+    {
+        return;
+    }
+    m_renderer->Clear();
+    m_guiContext->NewFrame();
+    if (m_showDemoWindow)
+    {
+        ImGui::ShowDemoWindow(&m_showDemoWindow);
+    }
+    m_guiContext->Render();
+    m_renderer->Present();
 }
 
 void WindowTest::OnShown()
@@ -141,6 +168,10 @@ void WindowTest::OnDestroyed()
 void WindowTest::OnKeyDown(const SDL_KeyboardEvent& keyDown)
 {
     RAD_LOG(m_logger, info, "OnKeyDown: {}", SDL_GetKeyName(keyDown.key));
+    if (keyDown.key == SDLK_F1)
+    {
+        m_showDemoWindow = !m_showDemoWindow;
+    }
 }
 
 void WindowTest::OnKeyUp(const SDL_KeyboardEvent& keyUp)

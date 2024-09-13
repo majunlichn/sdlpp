@@ -21,6 +21,8 @@ set(SDLPP_SOURCE_FILES
     Gui/Texture.cpp
     Gui/Image.h
     Gui/Image.cpp
+    Gui/GuiContext.h
+    Gui/GuiContext.cpp
     Media/Audio.h
     Media/Audio.cpp
     Media/AudioMixer.h

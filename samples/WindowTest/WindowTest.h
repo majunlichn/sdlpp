@@ -2,6 +2,7 @@
 
 #include <sdlpp/Gui/Window.h>
 #include <sdlpp/Gui/Renderer.h>
+#include <sdlpp/Gui/GuiContext.h>
 
 class WindowTest : public sdl::Window
 {
@@ -61,5 +62,9 @@ private:
     const char* GetMouseButtonName(Uint8 button);
 
     std::shared_ptr<spdlog::logger> m_logger;
+
+    rad::Ref<sdl::Renderer> m_renderer;
+    rad::Ref<sdl::GuiContext> m_guiContext;
+    bool m_showDemoWindow = true;
 
 }; // class WindowTest
