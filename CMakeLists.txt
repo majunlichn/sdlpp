@@ -20,6 +20,11 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install)
 if (NOT TARGET rad)
     add_subdirectory(imported/radcpp)
 endif()
+
+find_package(SDL3 CONFIG REQUIRED PATHS ${SDLPP_ROOT}/imported/installed/SDL)
+find_package(SDL3_mixer CONFIG REQUIRED PATHS ${SDLPP_ROOT}/imported/installed/SDL_mixer)
+
+add_subdirectory(imported/imgui)
 add_subdirectory(sdlpp)
 
 if (SDLPP_BUILD_SAMPLES)

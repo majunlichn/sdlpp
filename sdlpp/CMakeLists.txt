@@ -38,11 +38,9 @@ target_include_directories(sdlpp
     PUBLIC ${SDLPP_ROOT}/imported/radcpp
 )
 
-find_package(SDL3 CONFIG REQUIRED PATHS ${SDLPP_ROOT}/imported/installed/SDL)
-find_package(SDL3_mixer CONFIG REQUIRED PATHS ${SDLPP_ROOT}/imported/installed/SDL_mixer)
-
 target_link_libraries(sdlpp
     PUBLIC rad
     PUBLIC SDL3::SDL3
     PUBLIC SDL3_mixer::SDL3_mixer
+    PUBLIC imgui
 )
