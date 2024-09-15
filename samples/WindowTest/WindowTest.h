@@ -67,4 +67,6 @@ private:
     rad::Ref<sdl::GuiContext> m_guiContext;
     bool m_showDemoWindow = true;
 
+    rad::Ref<sdl::Texture> m_logo;
+
 }; // class WindowTest

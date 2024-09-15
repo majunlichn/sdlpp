@@ -1,4 +1,6 @@
 #include "WindowTest.h"
+#include <sdlpp/Gui/Texture.h>
+#include <sdlpp/Gui/Image.h>
 
 WindowTest::WindowTest()
 {
@@ -21,10 +23,21 @@ bool WindowTest::Init()
     {
         return false;
     }
+    m_renderer->SetVSync(1);
+
     m_guiContext = RAD_NEW sdl::GuiContext(this, m_renderer);
     if (!m_guiContext->Init())
     {
         return false;
+    }
+
+    sdl::ImageU8 image;
+    if (image.Load("SDL_logo.png", 4))
+    {
+        m_logo = sdl::Texture::Create(m_renderer,
+            SDL_PIXELFORMAT_RGBA32, SDL_TEXTUREACCESS_STATIC,
+            image.m_width, image.m_height);
+        m_logo->Update(nullptr, image.m_data, image.m_width * 4);
     }
     return true;
 }
@@ -45,6 +58,19 @@ void WindowTest::OnIdle()
         return;
     }
     m_renderer->Clear();
+    if (m_logo)
+    {
+        float texWidth = 0;
+        float texHeight = 0;
+        m_logo->GetSize(&texWidth, &texHeight);
+
+        SDL_FRect dstRect = {};
+        dstRect.x = 0.0f;
+        dstRect.y = 0.0f;
+        dstRect.w = texWidth;
+        dstRect.h = texHeight;
+        m_renderer->DrawTexture(m_logo.get(), nullptr, &dstRect);
+    }
     m_guiContext->NewFrame();
     if (m_showDemoWindow)
     {
