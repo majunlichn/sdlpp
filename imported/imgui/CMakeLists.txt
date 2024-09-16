@@ -22,6 +22,13 @@ set(IMGUI_SOURCE_FILES
     implot/implot_items.cpp
 )
 
+if (DEFINED VULKAN_INCLUDE_DIR)
+    list(APPEND IMGUI_SOURCE_FILES
+        backends/imgui_impl_vulkan.cpp
+        backends/imgui_impl_vulkan.h
+    )
+endif()
+
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${IMGUI_SOURCE_FILES})
 
 add_library(imgui
@@ -36,13 +43,9 @@ target_link_libraries(imgui
     PUBLIC SDL3::SDL3
 )
 
-if (DEFINED VULKAN_INCLUDES)
-    target_sources(imgui
-        backends/imgui_impl_vulkan.cpp
-        backends/imgui_impl_vulkan.h
-    )
+if (DEFINED VULKAN_INCLUDE_DIR)
     target_include_directories(imgui
-        PUBLIC ${VULKAN_INCLUDES}
+        PUBLIC ${VULKAN_INCLUDE_DIR}
     )
 endif()
 
