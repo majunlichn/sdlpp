@@ -26,7 +26,7 @@ SDL_AppResult SDL_AppIterate(void* appState)
     return g_app->GetExit() ? SDL_APP_SUCCESS : SDL_APP_CONTINUE;
 }
 
-SDL_AppResult SDL_AppEvent(void* appState, const SDL_Event* event)
+SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
 {
     g_app->OnEvent(*event);
     return g_app->GetExit() ? SDL_APP_SUCCESS : SDL_APP_CONTINUE;
