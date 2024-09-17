@@ -28,10 +28,10 @@ bool Application::Init(int argc, char** argv)
     rad::Application::Init(argc, argv);
     m_argc = argc;
     m_argv = argv;
+    // Init basic subsystems, init others with SDL_InitSubSystem later if required.
+    // Init all subsystems here may cause event loop lagging on Windows.
     SDL_bool result = SDL_Init(
-        SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO |
-        SDL_INIT_JOYSTICK | SDL_INIT_HAPTIC | SDL_INIT_GAMEPAD |
-        SDL_INIT_SENSOR | SDL_INIT_CAMERA);
+        SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO);
     if (result == SDL_TRUE)
     {
         int version = SDL_GetVersion();
