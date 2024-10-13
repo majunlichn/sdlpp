@@ -27,10 +27,8 @@ public:
     bool SetRenderToWindow() { return SetRenderTarget(nullptr); }
     Texture* GetRenderTarget();
 
-    bool SetLogicalPresentation(int w, int h,
-        SDL_RendererLogicalPresentation mode, SDL_ScaleMode scaleMode);
-    bool GetLogicalPresentation(int* w, int* h,
-        SDL_RendererLogicalPresentation* mode, SDL_ScaleMode* scaleMode);
+    bool SetLogicalPresentation(int w, int h, SDL_RendererLogicalPresentation mode);
+    bool GetLogicalPresentation(int* w, int* h, SDL_RendererLogicalPresentation* mode);
 
     bool TransformWindowCoordToRender(float windowX, float windowY, float* x, float* y);
     bool TransformRenderCoordToWindow(float x, float y, float* windowX, float* windowY);

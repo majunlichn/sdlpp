@@ -42,7 +42,7 @@ bool GuiContext::Init()
     SDL_DisplayID displayID = SDL_GetDisplayForWindow(m_window->GetHandle());
     SDL_Rect rect = {};
     float fontSize = 24.0f;
-    if (SDL_GetDisplayBounds(displayID, &rect) == SDL_TRUE)
+    if (SDL_GetDisplayBounds(displayID, &rect) == true)
     {
         fontSize = (float)rad::RoundUpToMultiple<uint32_t>(rect.h / 72, 12);
     }

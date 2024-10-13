@@ -26,7 +26,7 @@ struct DisplayInfo
 
     // https://wiki.libsdl.org/SDL3/SDL_GetDisplayProperties
     SDL_PropertiesID propID;
-    SDL_bool hdrEnabled;
+    bool hdrEnabled;
     float sdrWhitePoint;
     float hdrHeadroom;
     Sint64 kmsdrmOrientation;
@@ -46,9 +46,6 @@ public:
 
     bool Init(int argc, char** argv);
     void Destroy();
-
-    int GetArgc() const { return m_argc; }
-    char** GetArgv() const { return m_argv; }
 
     SDL_InitFlags GetInitialized();
     bool IsSubsystemInitialized(SDL_InitFlags flags);
@@ -89,8 +86,6 @@ public:
 
 private:
     void UpdateDisplayInfos();
-    int m_argc = 0;
-    char** m_argv = nullptr;
     std::vector<DisplayInfo> m_displays;
     std::mutex m_eventMutex;
     std::vector<EventHandler*> m_eventHandlers;

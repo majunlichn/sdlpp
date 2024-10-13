@@ -13,7 +13,7 @@ public:
     static rad::Ref<Surface> Create(int width, int height, SDL_PixelFormat format);
     static rad::Ref<Surface> CreateFormPixels(
         int width, int height, SDL_PixelFormat format, void* pixels, int pitch);
-    static rad::Ref<Surface> CreateFromBMP(SDL_IOStream* src, SDL_bool closeio);
+    static rad::Ref<Surface> CreateFromBMP(SDL_IOStream* src, bool closeio);
     static rad::Ref<Surface> CreateFromBMP(const char* file);
 
     Surface(SDL_Surface* handle, bool isManaged);
@@ -22,7 +22,7 @@ public:
 
     SDL_Surface* GetHandle() { return m_handle; }
 
-    bool SaveBMP(SDL_IOStream* dst, SDL_bool closeio);
+    bool SaveBMP(SDL_IOStream* dst, bool closeio);
     bool SaveBMP(const char* file);
 
     bool SetColorSpace(SDL_Colorspace colorspace);

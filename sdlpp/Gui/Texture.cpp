@@ -60,8 +60,8 @@ void Texture::Destroy()
 
 bool Texture::GetSize(float* w, float* h)
 {
-    SDL_bool result = SDL_GetTextureSize(m_handle, w, h);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetTextureSize(m_handle, w, h);
+    if (result == true)
     {
         return true;
     }
@@ -74,8 +74,8 @@ bool Texture::GetSize(float* w, float* h)
 
 bool Texture::SetColorMod(Uint8 r, Uint8 g, Uint8 b)
 {
-    SDL_bool result = SDL_SetTextureColorMod(m_handle, r, g, b);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetTextureColorMod(m_handle, r, g, b);
+    if (result == true)
     {
         return true;
     }
@@ -88,8 +88,8 @@ bool Texture::SetColorMod(Uint8 r, Uint8 g, Uint8 b)
 
 bool Texture::SetColorMod(float r, float g, float b)
 {
-    SDL_bool result = SDL_SetTextureColorModFloat(m_handle, r, g, b);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetTextureColorModFloat(m_handle, r, g, b);
+    if (result == true)
     {
         return true;
     }
@@ -102,8 +102,8 @@ bool Texture::SetColorMod(float r, float g, float b)
 
 bool Texture::GetColorMod(Uint8* r, Uint8* g, Uint8* b)
 {
-    SDL_bool result = SDL_GetTextureColorMod(m_handle, r, g, b);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetTextureColorMod(m_handle, r, g, b);
+    if (result == true)
     {
         return true;
     }
@@ -116,8 +116,8 @@ bool Texture::GetColorMod(Uint8* r, Uint8* g, Uint8* b)
 
 bool Texture::GetColorMod(float* r, float* g, float* b)
 {
-    SDL_bool result = SDL_GetTextureColorModFloat(m_handle, r, g, b);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetTextureColorModFloat(m_handle, r, g, b);
+    if (result == true)
     {
         return true;
     }
@@ -130,8 +130,8 @@ bool Texture::GetColorMod(float* r, float* g, float* b)
 
 bool Texture::SetAlphaMod(Uint8 alpha)
 {
-    SDL_bool result = SDL_SetTextureAlphaMod(m_handle, alpha);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetTextureAlphaMod(m_handle, alpha);
+    if (result == true)
     {
         return true;
     }
@@ -144,8 +144,8 @@ bool Texture::SetAlphaMod(Uint8 alpha)
 
 bool Texture::SetAlphaMod(float alpha)
 {
-    SDL_bool result = SDL_SetTextureAlphaModFloat(m_handle, alpha);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetTextureAlphaModFloat(m_handle, alpha);
+    if (result == true)
     {
         return true;
     }
@@ -158,8 +158,8 @@ bool Texture::SetAlphaMod(float alpha)
 
 bool Texture::GetAlphaMod(Uint8* alpha)
 {
-    SDL_bool result = SDL_GetTextureAlphaMod(m_handle, alpha);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetTextureAlphaMod(m_handle, alpha);
+    if (result == true)
     {
         return true;
     }
@@ -172,8 +172,8 @@ bool Texture::GetAlphaMod(Uint8* alpha)
 
 bool Texture::GetAlphaMod(float* alpha)
 {
-    SDL_bool result = SDL_GetTextureAlphaModFloat(m_handle, alpha);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetTextureAlphaModFloat(m_handle, alpha);
+    if (result == true)
     {
         return true;
     }
@@ -186,8 +186,8 @@ bool Texture::GetAlphaMod(float* alpha)
 
 bool Texture::SetBlendMode(SDL_BlendMode blendMode)
 {
-    SDL_bool result = SDL_SetTextureBlendMode(m_handle, blendMode);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetTextureBlendMode(m_handle, blendMode);
+    if (result == true)
     {
         return true;
     }
@@ -200,8 +200,8 @@ bool Texture::SetBlendMode(SDL_BlendMode blendMode)
 
 bool Texture::GetBlendMode(SDL_BlendMode* blendMode)
 {
-    SDL_bool result = SDL_GetTextureBlendMode(m_handle, blendMode);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetTextureBlendMode(m_handle, blendMode);
+    if (result == true)
     {
         return true;
     }
@@ -214,8 +214,8 @@ bool Texture::GetBlendMode(SDL_BlendMode* blendMode)
 
 bool Texture::SetScaleMode(SDL_ScaleMode scaleMode)
 {
-    SDL_bool result = SDL_SetTextureScaleMode(m_handle, scaleMode);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetTextureScaleMode(m_handle, scaleMode);
+    if (result == true)
     {
         return true;
     }
@@ -228,8 +228,8 @@ bool Texture::SetScaleMode(SDL_ScaleMode scaleMode)
 
 bool Texture::GetScaleMode(SDL_ScaleMode* scaleMode)
 {
-    SDL_bool result = SDL_GetTextureScaleMode(m_handle, scaleMode);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetTextureScaleMode(m_handle, scaleMode);
+    if (result == true)
     {
         return true;
     }
@@ -242,8 +242,8 @@ bool Texture::GetScaleMode(SDL_ScaleMode* scaleMode)
 
 bool Texture::Update(const SDL_Rect* rect, const void* pixels, int pitch)
 {
-    SDL_bool result = SDL_UpdateTexture(m_handle, rect, pixels, pitch);
-    if (result == SDL_TRUE)
+    bool result = SDL_UpdateTexture(m_handle, rect, pixels, pitch);
+    if (result == true)
     {
         return true;
     }
@@ -259,9 +259,9 @@ bool Texture::UpdateYUV(const SDL_Rect* rect,
     const Uint8* Uplane, int Upitch,
     const Uint8* Vplane, int Vpitch)
 {
-    SDL_bool result = SDL_UpdateYUVTexture(m_handle, rect,
+    bool result = SDL_UpdateYUVTexture(m_handle, rect,
         Yplane, Ypitch, Uplane, Upitch, Vplane, Vpitch);
-    if (result == SDL_TRUE)
+    if (result == true)
     {
         return true;
     }
@@ -274,9 +274,9 @@ bool Texture::UpdateYUV(const SDL_Rect* rect,
 
 bool Texture::UpdateNV(const SDL_Rect* rect, const Uint8* Yplane, int Ypitch, const Uint8* UVplane, int UVpitch)
 {
-    SDL_bool result = SDL_UpdateNVTexture(m_handle, rect,
+    bool result = SDL_UpdateNVTexture(m_handle, rect,
         Yplane, Ypitch, UVplane, UVpitch);
-    if (result == SDL_TRUE)
+    if (result == true)
     {
         return true;
     }
@@ -289,8 +289,8 @@ bool Texture::UpdateNV(const SDL_Rect* rect, const Uint8* Yplane, int Ypitch, co
 
 bool Texture::Lock(const SDL_Rect* rect, void** pixels, int* pitch)
 {
-    SDL_bool result = SDL_LockTexture(m_handle, rect, pixels, pitch);
-    if (result == SDL_TRUE)
+    bool result = SDL_LockTexture(m_handle, rect, pixels, pitch);
+    if (result == true)
     {
         return true;
     }
@@ -303,8 +303,8 @@ bool Texture::Lock(const SDL_Rect* rect, void** pixels, int* pitch)
 
 bool Texture::LockToSurface(const SDL_Rect* rect, SDL_Surface** surface)
 {
-    SDL_bool result = SDL_LockTextureToSurface(m_handle, rect, surface);
-    if (result == SDL_TRUE)
+    bool result = SDL_LockTextureToSurface(m_handle, rect, surface);
+    if (result == true)
     {
         return true;
     }

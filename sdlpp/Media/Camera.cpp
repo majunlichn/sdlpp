@@ -83,8 +83,8 @@ Camera::Permission Camera::GetPermission()
 
 bool Camera::GetFormat(SDL_CameraSpec* spec)
 {
-    SDL_bool result = SDL_GetCameraFormat(m_handle, spec);
-    if (result == SDL_TRUE)
+    bool result = SDL_GetCameraFormat(m_handle, spec);
+    if (result == true)
     {
         return true;
     }

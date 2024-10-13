@@ -68,12 +68,12 @@ public:
     void Resume();
     bool QuerySpec(int* frequency, SDL_AudioFormat* format, int* channels);
     int AllocateChannels(int channelCount);
-    rad::Ref<AudioChunk> LoadWAV(SDL_IOStream* src, SDL_bool closeio);
+    rad::Ref<AudioChunk> LoadWAV(SDL_IOStream* src, bool closeio);
     rad::Ref<AudioChunk> LoadWAV(std::string_view fileName);
     rad::Ref<AudioChunk> LoadWAVFromMemory(Uint8* memory);
-    rad::Ref<Music> LoadMusic(SDL_IOStream* src, SDL_bool closeio);
+    rad::Ref<Music> LoadMusic(SDL_IOStream* src, bool closeio);
     rad::Ref<Music> LoadMusic(std::string_view fileName);
-    rad::Ref<Music> LoadMusic(SDL_IOStream* src, Mix_MusicType type, SDL_bool closeio);
+    rad::Ref<Music> LoadMusic(SDL_IOStream* src, Mix_MusicType type, bool closeio);
     rad::Ref<AudioChunk> LoadRawFromMemory(Uint8* memory, Uint32 sizeInBytes);
 
     std::vector<const char*> GetChunkDecoders();
@@ -144,8 +144,6 @@ public:
     bool IsChannelPlaying(int channel);
     int GetPlayingChannelCount();
     bool IsMusicPlaying();
-
-    bool SetMusicCommand(std::string_view command);
 
     bool SetSoundFonts(std::string_view paths);
     const char* GetSoundFonts();

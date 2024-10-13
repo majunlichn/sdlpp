@@ -56,11 +56,11 @@ std::vector<rad::Ref<AudioDevice>> EnumerateAudioRecordingDevices()
     return devices;
 }
 
-bool LoadWAV(SDL_IOStream* src, SDL_bool close, SDL_AudioSpec* spec,
+bool LoadWAV(SDL_IOStream* src, bool close, SDL_AudioSpec* spec,
     Uint8** buffer, Uint32* sizeInBytes)
 {
-    SDL_bool result = SDL_LoadWAV_IO(src, close, spec, buffer, sizeInBytes);
-    if (result == SDL_TRUE)
+    bool result = SDL_LoadWAV_IO(src, close, spec, buffer, sizeInBytes);
+    if (result == true)
     {
         return true;
     }
@@ -74,8 +74,8 @@ bool LoadWAV(SDL_IOStream* src, SDL_bool close, SDL_AudioSpec* spec,
 bool LoadWAVFromFile(std::string_view path, SDL_AudioSpec* spec,
     Uint8** buffer, Uint32* sizeInBytes)
 {
-    SDL_bool result = SDL_LoadWAV(path.data(), spec, buffer, sizeInBytes);
-    if (result == SDL_TRUE)
+    bool result = SDL_LoadWAV(path.data(), spec, buffer, sizeInBytes);
+    if (result == true)
     {
         return true;
     }
@@ -88,8 +88,8 @@ bool LoadWAVFromFile(std::string_view path, SDL_AudioSpec* spec,
 
 bool MixAudioData(Uint8* dst, const Uint8* src, SDL_AudioFormat format, Uint32 sizeInBytes, float volume)
 {
-    SDL_bool result = SDL_MixAudio(dst, src, format, sizeInBytes, volume);
-    if (result == SDL_TRUE)
+    bool result = SDL_MixAudio(dst, src, format, sizeInBytes, volume);
+    if (result == true)
     {
         return true;
     }
@@ -103,9 +103,9 @@ bool MixAudioData(Uint8* dst, const Uint8* src, SDL_AudioFormat format, Uint32 s
 bool ConvertAudioData(const SDL_AudioSpec* srcSpec, const Uint8* srcData, int srcSizeInBytes,
     const SDL_AudioSpec* dstSpec, Uint8** dstData, int* dstSizeInBytes)
 {
-    SDL_bool result = SDL_ConvertAudioSamples(
+    bool result = SDL_ConvertAudioSamples(
         srcSpec, srcData, srcSizeInBytes, dstSpec, dstData, dstSizeInBytes);
-    if (result == SDL_TRUE)
+    if (result == true)
     {
         return true;
     }
@@ -120,8 +120,8 @@ AudioDevice::AudioDevice(SDL_AudioDeviceID id) :
     m_id(id)
 {
     m_name = SDL_GetAudioDeviceName(id);
-    SDL_bool result = SDL_GetAudioDeviceFormat(m_id, &m_format, &m_sampleFrames);
-    if (result != SDL_TRUE)
+    bool result = SDL_GetAudioDeviceFormat(m_id, &m_format, &m_sampleFrames);
+    if (result != true)
     {
         SDL_LOG(err, "SDL_GetAudioDeviceFormat failed: {}", SDL_GetError());
     }
@@ -147,8 +147,8 @@ bool AudioDevice::Open(const SDL_AudioSpec* spec)
 
 bool AudioDevice::Pause()
 {
-    SDL_bool result = SDL_PauseAudioDevice(m_id);
-    if (result == SDL_TRUE)
+    bool result = SDL_PauseAudioDevice(m_id);
+    if (result == true)
     {
         return true;
     }
@@ -161,8 +161,8 @@ bool AudioDevice::Pause()
 
 bool AudioDevice::Resume()
 {
-    SDL_bool result = SDL_ResumeAudioDevice(m_id);
-    if (result == SDL_TRUE)
+    bool result = SDL_ResumeAudioDevice(m_id);
+    if (result == true)
     {
         return true;
     }
@@ -175,7 +175,7 @@ bool AudioDevice::Resume()
 
 bool AudioDevice::IsPaused()
 {
-    return (SDL_AudioDevicePaused(m_id) == SDL_TRUE);
+    return (SDL_AudioDevicePaused(m_id) == true);
 }
 
 void AudioDevice::Close()
@@ -185,8 +185,8 @@ void AudioDevice::Close()
 
 bool AudioDevice::BindStreams(SDL_AudioStream** streams, int streamCount)
 {
-    SDL_bool result = SDL_BindAudioStreams(m_id, streams, streamCount);
-    if (result == SDL_TRUE)
+    bool result = SDL_BindAudioStreams(m_id, streams, streamCount);
+    if (result == true)
     {
         return true;
     }
@@ -204,8 +204,8 @@ void AudioDevice::UnbindAudioStreams(SDL_AudioStream** streams, int streamCount)
 
 bool AudioDevice::BindStream(SDL_AudioStream* stream)
 {
-    SDL_bool result = SDL_BindAudioStream(m_id, stream);
-    if (result == SDL_TRUE)
+    bool result = SDL_BindAudioStream(m_id, stream);
+    if (result == true)
     {
         return true;
     }
@@ -223,8 +223,8 @@ void AudioDevice::UnbindAudioStream(SDL_AudioStream* stream)
 
 bool AudioDevice::SetAudioPostmixCallback(SDL_AudioPostmixCallback callback, void* userData)
 {
-    SDL_bool result = SDL_SetAudioPostmixCallback(m_id, callback, userData);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetAudioPostmixCallback(m_id, callback, userData);
+    if (result == true)
     {
         return true;
     }
@@ -345,8 +345,8 @@ int AudioStream::GetDataSizeQueued()
 
 bool AudioStream::Flush()
 {
-    SDL_bool result = SDL_FlushAudioStream(m_handle);
-    if (result == SDL_TRUE)
+    bool result = SDL_FlushAudioStream(m_handle);
+    if (result == true)
     {
         return true;
     }
@@ -359,8 +359,8 @@ bool AudioStream::Flush()
 
 bool AudioStream::Clear()
 {
-    SDL_bool result = SDL_ClearAudioStream(m_handle);
-    if (result == SDL_TRUE)
+    bool result = SDL_ClearAudioStream(m_handle);
+    if (result == true)
     {
         return true;
     }
@@ -373,8 +373,8 @@ bool AudioStream::Clear()
 
 bool AudioStream::Pause()
 {
-    SDL_bool result = SDL_PauseAudioStreamDevice(m_handle);
-    if (result == SDL_TRUE)
+    bool result = SDL_PauseAudioStreamDevice(m_handle);
+    if (result == true)
     {
         return true;
     }
@@ -387,8 +387,8 @@ bool AudioStream::Pause()
 
 bool AudioStream::Resume()
 {
-    SDL_bool result = SDL_ResumeAudioStreamDevice(m_handle);
-    if (result == SDL_TRUE)
+    bool result = SDL_ResumeAudioStreamDevice(m_handle);
+    if (result == true)
     {
         return true;
     }
@@ -401,8 +401,8 @@ bool AudioStream::Resume()
 
 bool AudioStream::Lock()
 {
-    SDL_bool result = SDL_LockAudioStream(m_handle);
-    if (result == SDL_TRUE)
+    bool result = SDL_LockAudioStream(m_handle);
+    if (result == true)
     {
         return true;
     }
@@ -415,8 +415,8 @@ bool AudioStream::Lock()
 
 bool AudioStream::Unlock()
 {
-    SDL_bool result = SDL_UnlockAudioStream(m_handle);
-    if (result == SDL_TRUE)
+    bool result = SDL_UnlockAudioStream(m_handle);
+    if (result == true)
     {
         return true;
     }

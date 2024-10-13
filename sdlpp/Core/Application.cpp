@@ -26,13 +26,11 @@ Application::~Application()
 bool Application::Init(int argc, char** argv)
 {
     rad::Application::Init(argc, argv);
-    m_argc = argc;
-    m_argv = argv;
     // Init basic subsystems, init others with SDL_InitSubSystem later if required.
     // Init all subsystems here may cause event loop lagging on Windows.
-    SDL_bool result = SDL_Init(
-        SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO);
-    if (result == SDL_TRUE)
+    bool result = SDL_Init(
+        SDL_INIT_AUDIO | SDL_INIT_VIDEO);
+    if (result == true)
     {
         int version = SDL_GetVersion();
         SDL_LOG(info, "SDL initialized on {}: {}.{}.{} ({})", SDL_GetPlatform(),
@@ -95,8 +93,8 @@ void Application::UnregisterEventHandler(EventHandler* handler)
 
 bool Application::PushEvent(SDL_Event& event)
 {
-    SDL_bool result = SDL_PushEvent(&event);
-    if (result == SDL_TRUE)
+    bool result = SDL_PushEvent(&event);
+    if (result == true)
     {
         return true;
     }
@@ -179,13 +177,13 @@ void Application::OnIdle()
 
 bool Application::IsScreenSaverEnabled()
 {
-    return (SDL_ScreenSaverEnabled() == SDL_TRUE);
+    return (SDL_ScreenSaverEnabled() == true);
 }
 
 bool Application::EnableScreenSaver()
 {
-    SDL_bool result = SDL_EnableScreenSaver();
-    if (result == SDL_TRUE)
+    bool result = SDL_EnableScreenSaver();
+    if (result == true)
     {
         return true;
     }
@@ -198,8 +196,8 @@ bool Application::EnableScreenSaver()
 
 bool Application::DisableScreenSaver()
 {
-    SDL_bool result = SDL_DisableScreenSaver();
-    if (result == SDL_TRUE)
+    bool result = SDL_DisableScreenSaver();
+    if (result == true)
     {
         return true;
     }
@@ -212,8 +210,8 @@ bool Application::DisableScreenSaver()
 
 bool Application::SetClipboardText(const char* text)
 {
-    SDL_bool result = SDL_SetClipboardText(text);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetClipboardText(text);
+    if (result == true)
     {
         return true;
     }
@@ -241,13 +239,13 @@ std::string Application::GetClipboardText()
 
 bool Application::HasClipboardText()
 {
-    return (SDL_HasClipboardText() == SDL_TRUE);
+    return (SDL_HasClipboardText() == true);
 }
 
 bool Application::SetPrimarySelectionText(const char* text)
 {
-    SDL_bool result = SDL_SetPrimarySelectionText(text);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetPrimarySelectionText(text);
+    if (result == true)
     {
         return true;
     }
@@ -275,14 +273,14 @@ std::string Application::GetPrimarySelectionText()
 
 bool Application::HasPrimarySelectionText()
 {
-    return (SDL_HasPrimarySelectionText() == SDL_TRUE);
+    return (SDL_HasPrimarySelectionText() == true);
 }
 
 bool Application::SetClipboardData(SDL_ClipboardDataCallback callback, SDL_ClipboardCleanupCallback cleanup,
     void* userData, const char** mimeTypes, size_t mimeTypeCount)
 {
-    SDL_bool result = SDL_SetClipboardData(callback, cleanup, userData, mimeTypes, mimeTypeCount);
-    if (result == SDL_TRUE)
+    bool result = SDL_SetClipboardData(callback, cleanup, userData, mimeTypes, mimeTypeCount);
+    if (result == true)
     {
         return true;
     }
@@ -295,7 +293,7 @@ bool Application::SetClipboardData(SDL_ClipboardDataCallback callback, SDL_Clipb
 
 bool Application::ClearClipboardData()
 {
-    return (SDL_ClearClipboardData() == SDL_TRUE);
+    return (SDL_ClearClipboardData() == true);
 }
 
 const void* Application::GetClipboardData(const char* mimeType, size_t* size)
@@ -313,7 +311,7 @@ const void* Application::GetClipboardData(const char* mimeType, size_t* size)
 
 bool Application::HasClipboardData(const char* mimeType)
 {
-    return (SDL_HasClipboardData(mimeType) == SDL_TRUE);
+    return (SDL_HasClipboardData(mimeType) == true);
 }
 
 void Application::UpdateDisplayInfos()
@@ -343,12 +341,12 @@ void Application::UpdateDisplayInfos()
             info.name = "Unknown";
         }
 
-        if (SDL_GetDisplayBounds(id, &info.bounds) != SDL_TRUE)
+        if (SDL_GetDisplayBounds(id, &info.bounds) != true)
         {
             SDL_LOG(err, "SDL_GetDisplayBounds failed: {}", SDL_GetError());
         }
 
-        if (SDL_GetDisplayUsableBounds(id, &info.usableBounds) != SDL_TRUE)
+        if (SDL_GetDisplayUsableBounds(id, &info.usableBounds) != true)
         {
             SDL_LOG(err, "SDL_GetDisplayUsableBounds failed: {}", SDL_GetError());
         }
@@ -366,7 +364,7 @@ void Application::UpdateDisplayInfos()
         if (info.propID != 0)
         {
             info.hdrEnabled = SDL_GetBooleanProperty(info.propID,
-                SDL_PROP_DISPLAY_HDR_ENABLED_BOOLEAN, SDL_FALSE);
+                SDL_PROP_DISPLAY_HDR_ENABLED_BOOLEAN, false);
             info.kmsdrmOrientation = SDL_GetNumberProperty(info.propID,
                 SDL_PROP_DISPLAY_KMSDRM_PANEL_ORIENTATION_NUMBER, 0);
         }

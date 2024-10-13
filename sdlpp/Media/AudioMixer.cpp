@@ -90,8 +90,8 @@ int Music::GetTrackCount()
 
 bool Music::StartTrack(int track)
 {
-    SDL_bool result = Mix_StartTrack(m_music, track);
-    return (result == SDL_TRUE);
+    bool result = Mix_StartTrack(m_music, track);
+    return (result == true);
 }
 
 double Music::GetPosition()
@@ -174,8 +174,8 @@ AudioMixer::~AudioMixer()
 
 bool AudioMixer::Open(SDL_AudioDeviceID deviceID, const SDL_AudioSpec* spec)
 {
-    SDL_bool result = Mix_OpenAudio(deviceID, spec);
-    if (result == SDL_TRUE)
+    bool result = Mix_OpenAudio(deviceID, spec);
+    if (result == true)
     {
         m_opened = true;
         return true;
@@ -222,7 +222,7 @@ int AudioMixer::AllocateChannels(int channelCount)
     return Mix_AllocateChannels(channelCount);
 }
 
-rad::Ref<AudioChunk> AudioMixer::LoadWAV(SDL_IOStream* src, SDL_bool closeio)
+rad::Ref<AudioChunk> AudioMixer::LoadWAV(SDL_IOStream* src, bool closeio)
 {
     Mix_Chunk* chunk = Mix_LoadWAV_IO(src, closeio);
     if (chunk)
@@ -261,7 +261,7 @@ rad::Ref<AudioChunk> AudioMixer::LoadWAVFromMemory(Uint8* memory)
     }
 }
 
-rad::Ref<Music> AudioMixer::LoadMusic(SDL_IOStream* src, SDL_bool closeio)
+rad::Ref<Music> AudioMixer::LoadMusic(SDL_IOStream* src, bool closeio)
 {
     Mix_Music* music = Mix_LoadMUS_IO(src, closeio);
     if (music)
@@ -289,7 +289,7 @@ rad::Ref<Music> AudioMixer::LoadMusic(std::string_view fileName)
     }
 }
 
-rad::Ref<Music> AudioMixer::LoadMusic(SDL_IOStream* src, Mix_MusicType type, SDL_bool closeio)
+rad::Ref<Music> AudioMixer::LoadMusic(SDL_IOStream* src, Mix_MusicType type, bool closeio)
 {
     Mix_Music* music = Mix_LoadMUSType_IO(src, type, closeio);
     if (music)
@@ -332,7 +332,7 @@ std::vector<const char*> AudioMixer::GetChunkDecoders()
 
 bool AudioMixer::HasChunkDecoder(std::string_view name)
 {
-    return (Mix_HasChunkDecoder(name.data()) == SDL_TRUE);
+    return (Mix_HasChunkDecoder(name.data()) == true);
 }
 
 std::vector<const char*> AudioMixer::GetMusicDecoders()
@@ -352,7 +352,7 @@ std::vector<const char*> AudioMixer::GetMusicDecoders()
 
 bool AudioMixer::HasMusicDecoder(std::string_view name)
 {
-    return (Mix_HasMusicDecoder(name.data()) == SDL_TRUE);
+    return (Mix_HasMusicDecoder(name.data()) == true);
 }
 
 void AudioMixer::SetPostMixingCallback(Mix_MixCallback callback, void* arg)
@@ -382,7 +382,7 @@ void AudioMixer::SetChannelFinishedCallback(Mix_ChannelFinishedCallback callback
 
 bool AudioMixer::RegisterEffect(int channel, Mix_EffectFunc_t f, Mix_EffectDone_t d, void* arg)
 {
-    SDL_bool result = Mix_RegisterEffect(channel, f, d, arg);
+    bool result = Mix_RegisterEffect(channel, f, d, arg);
     if (result != 0)
     {
         return true;
@@ -396,7 +396,7 @@ bool AudioMixer::RegisterEffect(int channel, Mix_EffectFunc_t f, Mix_EffectDone_
 
 bool AudioMixer::UnregisterEffect(int channel, Mix_EffectFunc_t f)
 {
-    SDL_bool result = Mix_UnregisterEffect(channel, f);
+    bool result = Mix_UnregisterEffect(channel, f);
     if (result != 0)
     {
         return true;
@@ -410,7 +410,7 @@ bool AudioMixer::UnregisterEffect(int channel, Mix_EffectFunc_t f)
 
 bool AudioMixer::UnregisterAllEffects(int channel)
 {
-    SDL_bool result = Mix_UnregisterAllEffects(channel);
+    bool result = Mix_UnregisterAllEffects(channel);
     if (result != 0)
     {
         return true;
@@ -429,7 +429,7 @@ bool AudioMixer::SetPanning(int channel, Uint8 left, Uint8 right)
 
 bool AudioMixer::SetPosition(int channel, Sint16 angle, Uint8 distance)
 {
-    SDL_bool result = Mix_SetPosition(channel, angle, distance);
+    bool result = Mix_SetPosition(channel, angle, distance);
     if (result != 0)
     {
         return true;
@@ -443,7 +443,7 @@ bool AudioMixer::SetPosition(int channel, Sint16 angle, Uint8 distance)
 
 bool AudioMixer::SetDistance(int channel, Uint8 distance)
 {
-    SDL_bool result = Mix_SetDistance(channel, distance);
+    bool result = Mix_SetDistance(channel, distance);
     if (result != 0)
     {
         return true;
@@ -457,7 +457,7 @@ bool AudioMixer::SetDistance(int channel, Uint8 distance)
 
 bool AudioMixer::SetReverseStereo(int channel, bool flip)
 {
-    SDL_bool result = Mix_SetReverseStereo(channel, flip);
+    bool result = Mix_SetReverseStereo(channel, flip);
     if (result != 0)
     {
         return true;
@@ -561,20 +561,20 @@ Mix_Chunk* AudioMixer::GetChunk(int channel)
 
 bool AudioMixer::PlayMusic(Music* music, int loops)
 {
-    SDL_bool result = Mix_PlayMusic(music->GetMusic(), loops);
-    return (result == SDL_TRUE);
+    bool result = Mix_PlayMusic(music->GetMusic(), loops);
+    return (result == true);
 }
 
 bool AudioMixer::PlayMusicFadeIn(Music* music, int loops, int ms)
 {
-    SDL_bool result = Mix_FadeInMusic(music->GetMusic(), loops, ms);
-    return (result == SDL_TRUE);
+    bool result = Mix_FadeInMusic(music->GetMusic(), loops, ms);
+    return (result == true);
 }
 
 bool AudioMixer::PlayMusicFadeInFromPosition(Music* music, int loops, int ms, double position)
 {
-    SDL_bool result = Mix_FadeInMusicPos(music->GetMusic(), loops, ms, position);
-    return (result == SDL_TRUE);
+    bool result = Mix_FadeInMusicPos(music->GetMusic(), loops, ms, position);
+    return (result == true);
 }
 
 void AudioMixer::HaltChannel(int channel)
@@ -614,8 +614,8 @@ int AudioMixer::FadeOutGroup(int tag, int ms)
 
 bool AudioMixer::FadeOutMusic(int ms)
 {
-    SDL_bool result = Mix_FadeOutMusic(ms);
-    return (result == SDL_TRUE);
+    bool result = Mix_FadeOutMusic(ms);
+    return (result == true);
 }
 
 Mix_Fading AudioMixer::GetMusicFading()
@@ -681,8 +681,8 @@ bool AudioMixer::IsMusicPaused()
 
 bool AudioMixer::ModMusicJumpToOrder(int order)
 {
-    SDL_bool result = Mix_ModMusicJumpToOrder(order);
-    return (result == SDL_TRUE);
+    bool result = Mix_ModMusicJumpToOrder(order);
+    return (result == true);
 }
 
 bool AudioMixer::IsChannelPlaying(int channel)
@@ -698,20 +698,14 @@ int AudioMixer::GetPlayingChannelCount()
 
 bool AudioMixer::IsMusicPlaying()
 {
-    SDL_bool result = Mix_PlayingMusic();
+    bool result = Mix_PlayingMusic();
     return (result != 0);
-}
-
-bool AudioMixer::SetMusicCommand(std::string_view command)
-{
-    SDL_bool result = Mix_SetMusicCMD(command.data());
-    return (result == SDL_TRUE);
 }
 
 bool AudioMixer::SetSoundFonts(std::string_view paths)
 {
-    SDL_bool result = Mix_SetSoundFonts(paths.data());
-    return (result == SDL_TRUE);
+    bool result = Mix_SetSoundFonts(paths.data());
+    return (result == true);
 }
 
 const char* AudioMixer::GetSoundFonts()
@@ -721,13 +715,13 @@ const char* AudioMixer::GetSoundFonts()
 
 bool AudioMixer::IterateSoundFonts(Mix_EachSoundFontCallback function, void* data)
 {
-    SDL_bool result = Mix_EachSoundFont(function, data);
+    bool result = Mix_EachSoundFont(function, data);
     return (result != 0);
 }
 
 bool AudioMixer::SetTimidityCfg(std::string_view path)
 {
-    SDL_bool result = Mix_SetTimidityCfg(path.data());
+    bool result = Mix_SetTimidityCfg(path.data());
     return (result == 1);
 }
 

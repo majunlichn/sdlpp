@@ -17,7 +17,7 @@ std::vector<rad::Ref<AudioDevice>> EnumerateAudioRecordingDevices();
 
 class AudioStream;
 
-bool LoadWAV(SDL_IOStream* src, SDL_bool close, SDL_AudioSpec* spec,
+bool LoadWAV(SDL_IOStream* src, bool close, SDL_AudioSpec* spec,
     Uint8** buffer, Uint32* sizeInBytes);
 bool LoadWAVFromFile(std::string_view path, SDL_AudioSpec* spec,
     Uint8** buffer, Uint32* sizeInBytes);
