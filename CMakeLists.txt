@@ -1,13 +1,17 @@
 cmake_minimum_required(VERSION 3.10)
 
-if (DEFINED ENV{VCPKG_ROOT})
+if ((NOT DEFINED CMAKE_TOOLCHAIN_FILE) AND (DEFINED ENV{VCPKG_ROOT}))
     list(APPEND CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 endif()
 message("CMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
 
 project(sdlpp)
 
-option(SDLPP_BUILD_SAMPLES "Build samples." ON)
+if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
+    set(SDLPP_SUBPROJECT OFF)
+else()
+    set(SDLPP_SUBPROJECT ON)
+endif()
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -27,6 +31,6 @@ find_package(SDL3_mixer CONFIG REQUIRED PATHS ${SDLPP_ROOT}/imported/installed/S
 add_subdirectory(imported/imgui)
 add_subdirectory(sdlpp)
 
-if (SDLPP_BUILD_SAMPLES)
+if (NOT ${SDLPP_SUBPROJECT})
     add_subdirectory(samples/WindowTest)
 endif()
