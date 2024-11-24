@@ -56,7 +56,6 @@ def build_SDL_mixer():
 def main() -> int:
     try:
         chdir(script_root)
-        run("git submodule update --init --recursive")
         build_SDL()
         build_SDL_mixer()
         chdir(script_root)
