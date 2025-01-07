@@ -1,7 +1,6 @@
 # Custom
 build/
-imported/build/
-imported/installed/
+compile_commands.json
 
 # Prerequisites
 *.d
